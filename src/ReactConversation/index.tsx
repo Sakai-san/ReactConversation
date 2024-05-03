@@ -25,7 +25,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const questionsCount = qas.length;
   const next = () => setPostion((position) => position + 1);
 
-  const asked = qas.slice(questionsCount - (position + 1));
+  const asked = qas.slice(0, position + 1);
 
   return (
     <Stack useFlexGap gap={2}>
