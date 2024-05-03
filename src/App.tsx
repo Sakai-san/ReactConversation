@@ -37,8 +37,8 @@ function App() {
             },
             (ref) => (
               <FormControl ref={ref}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Held a leader position</FormLabel>
-                <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                <FormLabel id="leadership-position">Held a leader position</FormLabel>
+                <RadioGroup row aria-labelledby="leadership-position" name="row-radio-buttons-group">
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                 </RadioGroup>
@@ -50,7 +50,15 @@ function App() {
             () => {
               return <Typography>Do you need a working sponsorship ? </Typography>;
             },
-            (ref) => <TextField inputRef={ref} required id="sponsorship" label="Sponsorship needed" />,
+            (ref) => (
+              <FormControl ref={ref}>
+                <FormLabel id="sponsorship">Held a leader position</FormLabel>
+                <RadioGroup row aria-labelledby="sponsorship" name="row-radio-buttons-group">
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                </RadioGroup>
+              </FormControl>
+            ),
           ],
 
           [
