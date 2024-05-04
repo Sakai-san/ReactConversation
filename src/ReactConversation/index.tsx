@@ -22,7 +22,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   useEffect(() => {
     if (refs[position]) {
-      refs[position].focus?.();
+      refs[position].focus();
     }
   }, [qas, position]);
 
