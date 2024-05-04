@@ -81,15 +81,7 @@ function App() {
               return <Typography>When could you start earlier ? </Typography>;
             },
 
-            (ref) => (
-              <TextField
-                inputRef={ref}
-                required
-                id="starting-time"
-                label="Starting time"
-                InputLabelProps={{ shrink: true }}
-              />
-            ),
+            (ref) => <TextField inputRef={ref} required id="starting-time" type="date" />,
           ],
 
           [
