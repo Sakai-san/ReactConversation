@@ -102,7 +102,7 @@ function App() {
 
           [
             () => {
-              return <Typography>What technology do you have a professional experience with ?</Typography>;
+              return <Typography>What technologies do you have a professional experience with ?</Typography>;
             },
             (ref) => (
               <Autocomplete
