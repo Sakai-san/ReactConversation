@@ -10,6 +10,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import Autocomplete from "@mui/material/Autocomplete";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         qas={[
           [
             () => {
-              return <Typography>What's your first name ? </Typography>;
+              return <Typography>What's your first name ?</Typography>;
             },
             (ref) => (
               <TextField
@@ -33,7 +34,7 @@ function App() {
 
           [
             () => {
-              return <Typography>How long have you been doing Frontend developement ? </Typography>;
+              return <Typography>How long have you been doing Frontend developement ?</Typography>;
             },
             (ref) => (
               <TextField
@@ -63,7 +64,7 @@ function App() {
 
           [
             () => {
-              return <Typography>Do you need a working sponsorship ? </Typography>;
+              return <Typography>Do you need a working sponsorship ?</Typography>;
             },
             (ref) => (
               <FormControl ref={ref}>
@@ -77,7 +78,7 @@ function App() {
 
           [
             () => {
-              return <Typography>When could you start earlier ? </Typography>;
+              return <Typography>When could you start earlier ?</Typography>;
             },
 
             (ref) => <TextField inputRef={ref} required id="starting-time" type="date" />,
@@ -85,7 +86,7 @@ function App() {
 
           [
             () => {
-              return <Typography>What are your salary expectation ? </Typography>;
+              return <Typography>What are your salary expectation ?</Typography>;
             },
             (ref) => (
               <TextField
@@ -95,6 +96,30 @@ function App() {
                 label="Salary expectation"
                 InputLabelProps={{ shrink: true }}
                 type="number"
+              />
+            ),
+          ],
+
+          [
+            () => {
+              return <Typography>What technology do you have a professional experience with ?</Typography>;
+            },
+            (ref) => (
+              <Autocomplete
+                style={{ width: 500 }}
+                ref={ref}
+                multiple
+                id="technos"
+                options={[
+                  { language: "javascript", techno: "react" },
+                  { language: "typescript", techno: "angular" },
+                  { language: "php", techno: "laravel" },
+                  { language: "python", techno: "Django" },
+                  { language: "Node.js", techno: "Express" },
+                ]}
+                getOptionLabel={(option) => option.techno}
+                filterSelectedOptions
+                renderInput={(params) => <TextField {...params} label="Techos" />}
               />
             ),
           ],
