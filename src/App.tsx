@@ -21,14 +21,30 @@ function App() {
             () => {
               return <Typography>What's your first name ? </Typography>;
             },
-            (ref) => <TextField inputRef={ref} required id="first-name" label="Type your first name" />,
+            (ref) => (
+              <TextField
+                inputRef={ref}
+                required
+                id="first-name"
+                label="Type your first name"
+                InputLabelProps={{ shrink: true }}
+              />
+            ),
           ],
 
           [
             () => {
               return <Typography>How long have you been doing Frontend developement ? </Typography>;
             },
-            (ref) => <TextField inputRef={ref} required id="frontend-experience" label="Years of experience" />,
+            (ref) => (
+              <TextField
+                inputRef={ref}
+                required
+                id="frontend-experience"
+                label="Years of experience"
+                InputLabelProps={{ shrink: true }}
+              />
+            ),
           ],
 
           [
@@ -66,14 +82,30 @@ function App() {
               return <Typography>When could you start earlier ? </Typography>;
             },
 
-            (ref) => <TextField inputRef={ref} required id="starting-time" label="Starting time" />,
+            (ref) => (
+              <TextField
+                inputRef={ref}
+                required
+                id="starting-time"
+                label="Starting time"
+                InputLabelProps={{ shrink: true }}
+              />
+            ),
           ],
 
           [
             () => {
               return <Typography>What are your salary expectation ? </Typography>;
             },
-            (ref) => <TextField inputRef={ref} required id="salary" label="Salary expectation" />,
+            (ref) => (
+              <TextField
+                inputRef={ref}
+                required
+                id="salary"
+                label="Salary expectation"
+                InputLabelProps={{ shrink: true }}
+              />
+            ),
           ],
         ]}
       />
