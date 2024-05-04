@@ -23,24 +23,25 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const [position, setPostion] = useState(0);
 
   const questionsCount = qas.length;
-  const next = () => (questionsCount === position - 1 ? undefined : setPostion((position) => position + 1));
+  const next = () => setPostion((position) => position + 1);
 
   const asked = qas.slice(0, position + 1);
 
   return (
     <Stack useFlexGap gap={2}>
       {asked.map((qa, index) => renderRow(qa, index))}
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Button sx={{}} onClick={next} variant="contained" endIcon={<ChevronRightIcon />}>
-          Next
-        </Button>
-      </Box>
+      {position < questionsCount - 1 && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Button sx={{}} onClick={next} variant="contained" endIcon={<ChevronRightIcon />}>
+            Next
+          </Button>
+        </Box>
+      )}
     </Stack>
   );
 };
