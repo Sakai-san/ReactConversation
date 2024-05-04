@@ -43,6 +43,7 @@ function App() {
                 id="frontend-experience"
                 label="Years of experience"
                 InputLabelProps={{ shrink: true }}
+                type="number"
               />
             ),
           ],
@@ -53,8 +54,7 @@ function App() {
             },
             (ref) => (
               <FormControl ref={ref}>
-                <FormLabel id="leadership-position">Held a leader position</FormLabel>
-                <RadioGroup row aria-labelledby="leadership-position" name="leadership-position-radio-buttons-group">
+                <RadioGroup row name="leadership-position-radio-buttons-group">
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                 </RadioGroup>
@@ -68,8 +68,7 @@ function App() {
             },
             (ref) => (
               <FormControl ref={ref}>
-                <FormLabel id="sponsorship">Sponsorship needed</FormLabel>
-                <RadioGroup row aria-labelledby="sponsorship" name="sponsorship-radio-buttons-group">
+                <RadioGroup row name="sponsorship-radio-buttons-group">
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                 </RadioGroup>

@@ -23,7 +23,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const [position, setPostion] = useState(0);
 
   const questionsCount = qas.length;
-  const next = () => setPostion((position) => position + 1);
+  const next = () => (questionsCount === position - 1 ? undefined : setPostion((position) => position + 1));
 
   const asked = qas.slice(0, position + 1);
 
