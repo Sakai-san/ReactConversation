@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef } from "react";
+import React, { ReactNode, forwardRef, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
@@ -8,6 +8,12 @@ type QAProps = {
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
   const [renderQuestion, renderAnswer] = qa;
+
+  useEffect(() => {
+    if (ref && "focus" in ref) {
+      ref.focus?.();
+    }
+  }, [qa]);
 
   return (
     <Stack>
