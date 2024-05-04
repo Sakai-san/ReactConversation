@@ -1,9 +1,9 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode, useState, cloneElement } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
-import QA from "./QA";
+// import QA from "./QA";
 
 type ReactConversationProps = {
   qas: Array<[() => ReactNode, (ref: React.Ref) => ReactNode]>;
@@ -22,15 +22,21 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   return (
     <Stack useFlexGap gap={2}>
-      {asked.map((qa, index) => (
-        <QA
-          ref={(el: HTMLElement) => {
-            refs[index] = el;
-          }}
-          key={index}
-          qa={qa}
-        />
-      ))}
+      {asked.map((qa, index) => {
+        const [renderQuestion, renderAnswer] = qa;
+        return (
+          <Stack key={index}>
+            <Box alignSelf="start">{renderQuestion()}</Box>
+            <Box alignSelf="end">
+              {cloneElement(renderAnswer(refs[index]), {
+                ref: (el: HTMLElement) => {
+                  refs[index] = el;
+                },
+              })}
+            </Box>
+          </Stack>
+        );
+      })}
       {position < questionsCount - 1 && (
         <Box
           sx={{
