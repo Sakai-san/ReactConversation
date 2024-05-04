@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 type QAProps = {
-  qa: [() => ReactNode, (ref: React.Ref) => ReactNode];
+  qa: [() => ReactNode, (ref: React.Ref<HTMLElement>) => ReactNode];
 };
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {

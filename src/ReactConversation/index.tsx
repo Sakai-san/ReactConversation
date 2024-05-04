@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import QA from "./QA";
 
 type ReactConversationProps = {
-  qas: Array<[() => ReactNode, (ref: React.Ref) => ReactNode]>;
+  qas: Array<[() => ReactNode, (ref: React.Ref<HTMLElement>) => ReactNode]>;
 };
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
@@ -28,17 +28,15 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   return (
     <Stack useFlexGap gap={2}>
-      {asked.map((qa, index) => {
-        return (
-          <QA
-            key={index}
-            qa={qa}
-            ref={(el: HTMLElement) => {
-              refs[index] = el;
-            }}
-          />
-        );
-      })}
+      {asked.map((qa, index) => (
+        <QA
+          key={index}
+          qa={qa}
+          ref={(el: HTMLElement) => {
+            refs[index] = el;
+          }}
+        />
+      ))}
       {position < questionsCount - 1 && (
         <Box
           sx={{
