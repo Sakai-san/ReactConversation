@@ -104,6 +104,7 @@ function App() {
                 id="salary"
                 label="Salary expectation"
                 InputLabelProps={{ shrink: true }}
+                type="number"
               />
             ),
           ],
