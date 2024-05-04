@@ -13,7 +13,7 @@ const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
     if (ref && "focus" in ref) {
       ref.focus?.();
     }
-  }, [qa]);
+  }, [qa, ref]);
 
   return (
     <Stack>
