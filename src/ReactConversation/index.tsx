@@ -1,22 +1,12 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode, useState, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
+import QA from "./QA";
 
 type ReactConversationProps = {
   qas: Array<[() => ReactNode, (ref: React.Ref) => ReactNode]>;
-};
-
-const renderRow = (row: [() => ReactNode, (ref: React.Ref) => ReactNode], index: number) => {
-  const [renderQuestion, renderAnswer] = row;
-
-  return (
-    <Stack key={index}>
-      <Box alignSelf="start">{renderQuestion()}</Box>
-      <Box alignSelf="end">{renderAnswer()}</Box>
-    </Stack>
-  );
 };
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
@@ -29,7 +19,9 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   return (
     <Stack useFlexGap gap={2}>
-      {asked.map((qa, index) => renderRow(qa, index))}
+      {asked.map((qa, index) => (
+        <QA key={index} qa={qa} />
+      ))}
       {position < questionsCount - 1 && (
         <Box
           sx={{
