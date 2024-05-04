@@ -1,12 +1,12 @@
-import React, { FC, ReactNode, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
-import QA from "./QA";
+import QA, { QAProps } from "./QA";
 
 type ReactConversationProps = {
-  qas: Array<[() => ReactNode, (ref: React.Ref<HTMLElement>) => ReactNode]>;
+  qas: Array<QAProps["qa"]>;
 };
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
