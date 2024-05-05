@@ -17,7 +17,7 @@ import { useForm, Controller } from "react-hook-form";
 
 const defaultValues = {
   firstName: "",
-  input: "",
+  yearsExperience: "",
 };
 
 function App() {
@@ -57,13 +57,21 @@ function App() {
             [
               <Typography>How long have you been doing Frontend developement ?</Typography>,
               (ref) => (
-                <TextField
-                  inputRef={ref}
-                  required
+                <Controller
+                  control={control}
                   name="yearsExperience"
-                  id="frontend-experience"
-                  label="Years of experience"
-                  type="number"
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      inputRef={ref}
+                      helperText={fieldState.error?.message ?? " "}
+                      error={Boolean(fieldState.error)}
+                      required
+                      id="frontend-experience"
+                      label="Years of experience"
+                      type="number"
+                    />
+                  )}
                 />
               ),
             ],
