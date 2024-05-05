@@ -11,7 +11,7 @@ const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
   const [question, answer] = qa(ref);
 
   return (
-    <Paper elevation={2} sx={{ p: 2 }}>
+    <Paper elevation={4} sx={{ p: 2 }}>
       <Stack>
         <Box alignSelf="start">{question}</Box>
         <Box alignSelf="end">{answer}</Box>

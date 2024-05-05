@@ -37,7 +37,6 @@ function App() {
                 id="first-name"
                 label="First name"
                 inputProps={{ autoComplete: "new-password" }}
-                onChange={updateFormValue}
               />,
             ],
 
@@ -50,7 +49,6 @@ function App() {
                 id="frontend-experience"
                 label="Years of experience"
                 type="number"
-                onChange={updateFormValue}
               />,
             ],
 
@@ -76,14 +74,7 @@ function App() {
 
             (ref) => [
               <Typography>When could you start earlier ?</Typography>,
-              <TextField
-                inputRef={ref}
-                required
-                name="startingTime"
-                id="starting-time"
-                type="date"
-                onChange={updateFormValue}
-              />,
+              <TextField inputRef={ref} required name="startingTime" id="starting-time" type="date" />,
             ],
 
             (ref) => [
@@ -96,7 +87,6 @@ function App() {
                 label="Salary expectation"
                 InputLabelProps={{ shrink: true }}
                 type="number"
-                onChange={updateFormValue}
               />,
             ],
 
