@@ -102,7 +102,6 @@ function App() {
             <Typography>What technologies do you have a professional experience with ?</Typography>,
             <Autocomplete
               style={{ width: 500 }}
-              ref={ref}
               multiple
               id="technos"
               options={[
@@ -121,7 +120,7 @@ function App() {
                 "TypeScript",
               ]}
               filterSelectedOptions
-              renderInput={(params) => <TextField {...params} label="Techos" />}
+              renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
             />,
           ],
         ]}
