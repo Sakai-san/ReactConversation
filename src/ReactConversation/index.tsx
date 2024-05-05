@@ -27,7 +27,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   }, [qas, position]);
 
   return (
-    <Stack useFlexGap gap={2}>
+    <Stack useFlexGap gap={3}>
       {asked.map((qa, index) => (
         <QA
           key={index}
