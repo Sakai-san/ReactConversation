@@ -94,7 +94,16 @@ function App() {
               return <Typography>When could you start earlier ?</Typography>;
             },
 
-            (ref) => <TextField inputRef={ref} required id="starting-time" type="date" />,
+            (ref) => (
+              <TextField
+                inputRef={ref}
+                required
+                name="startingTime"
+                id="starting-time"
+                type="date"
+                onChange={updateFormValue}
+              />
+            ),
           ],
 
           [
@@ -105,10 +114,12 @@ function App() {
               <TextField
                 inputRef={ref}
                 required
+                name="expectedSalary"
                 id="salary"
                 label="Salary expectation"
                 InputLabelProps={{ shrink: true }}
                 type="number"
+                onChange={updateFormValue}
               />
             ),
           ],
