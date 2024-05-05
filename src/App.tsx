@@ -149,7 +149,11 @@ function App() {
             ],
           ]}
         />
-        <Button variant="contained">Submit</Button>
+        {Boolean(others.formState.errors) && (
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
+        )}
       </Box>
     </Container>
   );
