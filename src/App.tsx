@@ -13,6 +13,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 function App() {
   const [formValues, setFormValues] = useState<Record<string, string | boolean>>();
@@ -117,6 +118,7 @@ function App() {
             ],
           ]}
         />
+        <Button variant="contained">Submit</Button>
       </Box>
     </Container>
   );
