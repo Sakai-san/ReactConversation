@@ -34,7 +34,7 @@ function App() {
               name="firstName"
               id="first-name"
               label="First name"
-              InputLabelProps={{ shrink: true }}
+              inputProps={{ autoComplete: "new-password" }}
               onChange={updateFormValue}
             />,
           ],
@@ -47,7 +47,6 @@ function App() {
               name="yearsExperience"
               id="frontend-experience"
               label="Years of experience"
-              InputLabelProps={{ shrink: true }}
               type="number"
               onChange={updateFormValue}
             />,
