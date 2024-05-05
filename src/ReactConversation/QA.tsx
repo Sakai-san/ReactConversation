@@ -1,9 +1,9 @@
-import React, { ReactElement, forwardRef } from "react";
+import { Ref, ReactElement, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
 export type QAProps = {
-  qa: [() => ReactElement, (ref: React.Ref<HTMLElement>) => ReactElement];
+  qa: [() => ReactElement, (ref: Ref<HTMLElement>) => ReactElement];
 };
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
