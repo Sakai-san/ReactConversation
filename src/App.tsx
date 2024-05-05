@@ -14,6 +14,12 @@ import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useForm, Controller } from "react-hook-form";
+
+const defaultValues = {
+  firstName: "",
+  input: "",
+};
 
 function App() {
   const [formValues, setFormValues] = useState<Record<string, string | boolean>>();
@@ -23,98 +29,123 @@ function App() {
       [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
     }));
 
-  console.log("formValues", formValues);
+  const { handleSubmit, reset, watch, control, register, ...others } = useForm({ defaultValues });
+
+  const onSubmit = (data) => console.log(data);
+
+  console.log("others", others);
+
   return (
     <Container>
-      <Box component="form" noValidate autoComplete="off">
+      <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <ReactConversation
           qas={[
-            (ref) => [
+            [
               <Typography>What's your first name ?</Typography>,
-              <TextField
-                inputRef={ref}
-                required
-                name="firstName"
-                id="first-name"
-                label="First name"
-                inputProps={{ autoComplete: "new-password" }}
-              />,
+              (ref) => (
+                <Controller
+                  control={control}
+                  name="firstName"
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      inputRef={ref}
+                      helperText={fieldState.error?.message ?? " "}
+                      error={Boolean(fieldState.error)}
+                      required
+                      id="first-name"
+                      label="First name"
+                      inputProps={{ autoComplete: "new-password" }}
+                    />
+                  )}
+                />
+              ),
             ],
 
-            (ref) => [
+            [
               <Typography>How long have you been doing Frontend developement ?</Typography>,
-              <TextField
-                inputRef={ref}
-                required
-                name="yearsExperience"
-                id="frontend-experience"
-                label="Years of experience"
-                type="number"
-              />,
+              (ref) => (
+                <TextField
+                  inputRef={ref}
+                  required
+                  name="yearsExperience"
+                  id="frontend-experience"
+                  label="Years of experience"
+                  type="number"
+                />
+              ),
             ],
 
-            (ref) => [
+            [
               <Typography>Have you ever hold a leadership position ?</Typography>,
-              <FormControl>
-                <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                </RadioGroup>
-              </FormControl>,
+              (ref) => (
+                <FormControl>
+                  <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
+                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  </RadioGroup>
+                </FormControl>
+              ),
             ],
 
-            (ref) => [
+            [
               <Typography>Do you need a working sponsorship ?</Typography>,
-              <FormControl>
-                <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                </RadioGroup>
-              </FormControl>,
+              (ref) => (
+                <FormControl>
+                  <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
+                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  </RadioGroup>
+                </FormControl>
+              ),
             ],
 
-            (ref) => [
+            [
               <Typography>When could you start earlier ?</Typography>,
-              <TextField inputRef={ref} required name="startingTime" id="starting-time" type="date" />,
+              (ref) => <TextField inputRef={ref} required name="startingTime" id="starting-time" type="date" />,
             ],
 
-            (ref) => [
+            [
               <Typography>What are your salary expectation ?</Typography>,
-              <TextField
-                inputRef={ref}
-                required
-                name="expectedSalary"
-                id="salary"
-                label="Salary expectation"
-                InputLabelProps={{ shrink: true }}
-                type="number"
-              />,
+              (ref) => (
+                <TextField
+                  inputRef={ref}
+                  required
+                  name="expectedSalary"
+                  id="salary"
+                  label="Salary expectation"
+                  InputLabelProps={{ shrink: true }}
+                  type="number"
+                />
+              ),
             ],
 
-            (ref) => [
+            [
               <Typography>What technologies do you have a professional experience with ?</Typography>,
-              <Autocomplete
-                style={{ width: 500 }}
-                multiple
-                id="technos"
-                options={[
-                  "react",
-                  "Java EE",
-                  "Spring Boot",
-                  "php",
-                  "laravel",
-                  "symphony",
-                  "Django",
-                  "nodejs",
-                  "Express",
-                  "Angular",
-                  "AngularJS",
-                  "python",
-                  "TypeScript",
-                ]}
-                filterSelectedOptions
-                renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
-              />,
+              (ref) => (
+                <Autocomplete
+                  style={{ width: 500 }}
+                  multiple
+                  id="technos"
+                  options={[
+                    "react",
+                    "Java EE",
+                    "Spring Boot",
+                    "php",
+                    "laravel",
+                    "symphony",
+                    "Django",
+                    "nodejs",
+                    "Express",
+                    "Angular",
+                    "AngularJS",
+                    "python",
+                    "TypeScript",
+                  ]}
+                  filterSelectedOptions
+                  renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
+                />
+              ),
             ],
           ]}
         />

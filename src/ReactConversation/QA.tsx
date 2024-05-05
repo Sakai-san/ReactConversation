@@ -4,17 +4,17 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 
 export type QAProps = {
-  qa: (ref: Ref<HTMLElement>) => [ReactElement, ReactElement];
+  qa: [ReactElement, (ref?: Ref<HTMLElement>) => ReactElement];
 };
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
-  const [question, answer] = qa(ref);
+  const [question, renderAnswer] = qa;
 
   return (
     <Paper elevation={4} sx={{ p: 2 }}>
       <Stack>
         <Box alignSelf="start">{question}</Box>
-        <Box alignSelf="end">{answer}</Box>
+        <Box alignSelf="end">{renderAnswer(ref)}</Box>
       </Stack>
     </Paper>
   );
