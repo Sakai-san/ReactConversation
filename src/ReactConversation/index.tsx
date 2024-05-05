@@ -44,7 +44,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
             justifyContent: "flex-end",
           }}
         >
-          <Button onClick={next} variant="contained" endIcon={<ChevronRightIcon />}>
+          <Button onClick={next} variant="outlined" endIcon={<ChevronRightIcon />}>
             Next
           </Button>
         </Box>
