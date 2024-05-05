@@ -11,8 +11,17 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
+import { useState } from "react";
 
 function App() {
+  const [formValues, setFormValues] = useState<Record<string, string | boolean>>();
+  const updateFormValue = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFormValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
+    }));
+
+  console.log("formValues", formValues);
   return (
     <Container>
       <ReactConversation
@@ -25,9 +34,11 @@ function App() {
               <TextField
                 inputRef={ref}
                 required
+                name="firstName"
                 id="first-name"
                 label="Type your first name"
                 InputLabelProps={{ shrink: true }}
+                onChange={updateFormValue}
               />
             ),
           ],
@@ -40,10 +51,12 @@ function App() {
               <TextField
                 inputRef={ref}
                 required
+                name="yearsExperience"
                 id="frontend-experience"
                 label="Years of experience"
                 InputLabelProps={{ shrink: true }}
                 type="number"
+                onChange={updateFormValue}
               />
             ),
           ],
@@ -111,13 +124,20 @@ function App() {
                 multiple
                 id="technos"
                 options={[
-                  { language: "javascript", techno: "react" },
-                  { language: "typescript", techno: "angular" },
-                  { language: "php", techno: "laravel" },
-                  { language: "python", techno: "Django" },
-                  { language: "Node.js", techno: "Express" },
+                  "react",
+                  "Java EE",
+                  "Spring Boot",
+                  "php",
+                  "laravel",
+                  "symphony",
+                  "Django",
+                  "nodejs",
+                  "Express",
+                  "Angular",
+                  "AngularJS",
+                  "python",
+                  "TypeScript",
                 ]}
-                getOptionLabel={(option) => option.techno}
                 filterSelectedOptions
                 renderInput={(params) => <TextField {...params} label="Techos" />}
               />
