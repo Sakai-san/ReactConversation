@@ -36,7 +36,7 @@ function App() {
                 required
                 name="firstName"
                 id="first-name"
-                label="Type your first name"
+                label="First name"
                 InputLabelProps={{ shrink: true }}
                 onChange={updateFormValue}
               />
