@@ -2,7 +2,6 @@
 //import viteLogo from "/vite.svg";
 //import "./App.css";
 
-import { useState } from "react";
 import ReactConversation from "./ReactConversation";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -22,13 +21,6 @@ const defaultValues = {
 };
 
 function App() {
-  const [formValues, setFormValues] = useState<Record<string, string | boolean>>();
-  const updateFormValue = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFormValues((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
-    }));
-
   const { handleSubmit, reset, watch, control, register, ...others } = useForm({ defaultValues });
 
   const onSubmit = (data) => console.log(data);
