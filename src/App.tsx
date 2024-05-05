@@ -53,8 +53,8 @@ function App() {
               return <Typography>Have you ever hold a leadership position ?</Typography>;
             },
             (ref) => (
-              <FormControl ref={ref}>
-                <RadioGroup row name="leadership-position-radio-buttons-group">
+              <FormControl>
+                <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                 </RadioGroup>
@@ -67,8 +67,8 @@ function App() {
               return <Typography>Do you need a working sponsorship ?</Typography>;
             },
             (ref) => (
-              <FormControl ref={ref}>
-                <RadioGroup row name="sponsorship-radio-buttons-group">
+              <FormControl>
+                <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
                   <FormControlLabel value="no" control={<Radio />} label="No" />
                   <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                 </RadioGroup>
