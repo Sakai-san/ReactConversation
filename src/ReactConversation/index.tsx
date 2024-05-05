@@ -13,7 +13,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const [position, setPostion] = useState(0);
   const questionsCount = qas.length;
 
-  // refs is re-initialized each time the component re-renders
+  // refs is re-initialized each time the component re-renders and populated in batch after rendering
   const refs: Array<HTMLElement> = [];
 
   const next = () => setPostion((position) => position + 1);
