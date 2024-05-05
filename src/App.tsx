@@ -26,133 +26,103 @@ function App() {
     <Container>
       <ReactConversation
         qas={[
-          [
-            () => {
-              return <Typography>What's your first name ?</Typography>;
-            },
-            (ref) => (
-              <TextField
-                inputRef={ref}
-                required
-                name="firstName"
-                id="first-name"
-                label="First name"
-                InputLabelProps={{ shrink: true }}
-                onChange={updateFormValue}
-              />
-            ),
+          (ref) => [
+            <Typography>What's your first name ?</Typography>,
+            <TextField
+              inputRef={ref}
+              required
+              name="firstName"
+              id="first-name"
+              label="First name"
+              InputLabelProps={{ shrink: true }}
+              onChange={updateFormValue}
+            />,
           ],
 
-          [
-            () => {
-              return <Typography>How long have you been doing Frontend developement ?</Typography>;
-            },
-            (ref) => (
-              <TextField
-                inputRef={ref}
-                required
-                name="yearsExperience"
-                id="frontend-experience"
-                label="Years of experience"
-                InputLabelProps={{ shrink: true }}
-                type="number"
-                onChange={updateFormValue}
-              />
-            ),
+          (ref) => [
+            <Typography>How long have you been doing Frontend developement ?</Typography>,
+            <TextField
+              inputRef={ref}
+              required
+              name="yearsExperience"
+              id="frontend-experience"
+              label="Years of experience"
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              onChange={updateFormValue}
+            />,
+          ],
+          (ref) => [
+            <Typography>Have you ever hold a leadership position ?</Typography>,
+            <FormControl>
+              <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
+                <FormControlLabel value="no" control={<Radio />} label="No" />
+                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              </RadioGroup>
+            </FormControl>,
           ],
 
-          [
-            () => {
-              return <Typography>Have you ever hold a leadership position ?</Typography>;
-            },
-            (ref) => (
-              <FormControl>
-                <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                </RadioGroup>
-              </FormControl>
-            ),
+          (ref) => [
+            <Typography>Do you need a working sponsorship ?</Typography>,
+            <FormControl>
+              <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
+                <FormControlLabel value="no" control={<Radio />} label="No" />
+                <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              </RadioGroup>
+            </FormControl>,
           ],
 
-          [
-            () => {
-              return <Typography>Do you need a working sponsorship ?</Typography>;
-            },
-            (ref) => (
-              <FormControl>
-                <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                </RadioGroup>
-              </FormControl>
-            ),
+          (ref) => [
+            <Typography>When could you start earlier ?</Typography>,
+            <TextField
+              inputRef={ref}
+              required
+              name="startingTime"
+              id="starting-time"
+              type="date"
+              onChange={updateFormValue}
+            />,
           ],
 
-          [
-            () => {
-              return <Typography>When could you start earlier ?</Typography>;
-            },
-
-            (ref) => (
-              <TextField
-                inputRef={ref}
-                required
-                name="startingTime"
-                id="starting-time"
-                type="date"
-                onChange={updateFormValue}
-              />
-            ),
+          (ref) => [
+            <Typography>What are your salary expectation ?</Typography>,
+            <TextField
+              inputRef={ref}
+              required
+              name="expectedSalary"
+              id="salary"
+              label="Salary expectation"
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              onChange={updateFormValue}
+            />,
           ],
 
-          [
-            () => {
-              return <Typography>What are your salary expectation ?</Typography>;
-            },
-            (ref) => (
-              <TextField
-                inputRef={ref}
-                required
-                name="expectedSalary"
-                id="salary"
-                label="Salary expectation"
-                InputLabelProps={{ shrink: true }}
-                type="number"
-                onChange={updateFormValue}
-              />
-            ),
-          ],
-
-          [
-            () => {
-              return <Typography>What technologies do you have a professional experience with ?</Typography>;
-            },
-            (ref) => (
-              <Autocomplete
-                style={{ width: 500 }}
-                ref={ref}
-                multiple
-                id="technos"
-                options={[
-                  "react",
-                  "Java EE",
-                  "Spring Boot",
-                  "php",
-                  "laravel",
-                  "symphony",
-                  "Django",
-                  "nodejs",
-                  "Express",
-                  "Angular",
-                  "AngularJS",
-                  "python",
-                  "TypeScript",
-                ]}
-                filterSelectedOptions
-                renderInput={(params) => <TextField {...params} label="Techos" />}
-              />
-            ),
+          (ref) => [
+            <Typography>What technologies do you have a professional experience with ?</Typography>,
+            <Autocomplete
+              style={{ width: 500 }}
+              ref={ref}
+              multiple
+              id="technos"
+              options={[
+                "react",
+                "Java EE",
+                "Spring Boot",
+                "php",
+                "laravel",
+                "symphony",
+                "Django",
+                "nodejs",
+                "Express",
+                "Angular",
+                "AngularJS",
+                "python",
+                "TypeScript",
+              ]}
+              filterSelectedOptions
+              renderInput={(params) => <TextField {...params} label="Techos" />}
+            />,
           ],
         ]}
       />
