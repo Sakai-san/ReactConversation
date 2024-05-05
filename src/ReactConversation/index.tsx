@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
-import Paper from "@mui/material/Paper";
 import QA, { QAProps } from "./QA";
 
 type ReactConversationProps = {
@@ -29,31 +28,15 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   return (
     <Stack useFlexGap gap={3}>
-      {asked.map((qa, index) => {
-        const [question, renderAnswer] = qa;
-
-        return (
-          <Paper key={index} elevation={4} sx={{ p: 2 }}>
-            <Stack>
-              <Box alignSelf="start">{question}</Box>
-              <Box alignSelf="end">
-                {renderAnswer((el: HTMLElement) => {
-                  refs[index] = el;
-                })}
-              </Box>
-            </Stack>
-          </Paper>
-        );
-        // return (
-        //   <QA
-        //     key={index}
-        //     qa={qa}
-        //     ref={(el: HTMLElement) => {
-        //       refs[index] = el;
-        //     }}
-        //   />
-        // );
-      })}
+      {asked.map((qa, index) => (
+        <QA
+          key={index}
+          qa={qa}
+          ref={(el: HTMLElement) => {
+            refs[index] = el;
+          }}
+        />
+      ))}
       {position < questionsCount - 1 && (
         <Box
           sx={{
