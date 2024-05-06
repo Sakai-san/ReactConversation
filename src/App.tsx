@@ -21,13 +21,14 @@ const defaultValues = {
   gender: "",
 };
 
-const schema = () =>
-  z.object({
-    firstName: z.string().min(1, "First name is required"),
-  });
+const schema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+});
+
+type ValidationSchema = z.infer<typeof schema>;
 
 function App() {
-  const { handleSubmit, reset, watch, control, register, ...others } = useForm({
+  const { handleSubmit, reset, watch, control, register, ...others } = useForm<ValidationSchema>({
     defaultValues,
     resolver: zodResolver(schema),
     mode: "onBlur",
