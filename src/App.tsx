@@ -1,8 +1,9 @@
 //import reactLogo from "./assets/react.svg";
 //import viteLogo from "/vite.svg";
 //import "./App.css";
-
-import ReactConversation from "./ReactConversation";
+import { z } from "zod";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -12,7 +13,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useForm, Controller } from "react-hook-form";
+import ReactConversation from "./ReactConversation";
 
 const defaultValues = {
   firstName: "",
@@ -20,8 +21,17 @@ const defaultValues = {
   gender: "",
 };
 
+const schema = () =>
+  z.object({
+    firstName: z.string().min(1, "First name is required"),
+  });
+
 function App() {
-  const { handleSubmit, reset, watch, control, register, ...others } = useForm({ defaultValues, mode: "onBlur" });
+  const { handleSubmit, reset, watch, control, register, ...others } = useForm({
+    defaultValues,
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+  });
 
   const onSubmit = (data) => console.log(data);
 
