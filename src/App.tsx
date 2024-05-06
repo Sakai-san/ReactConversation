@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,10 +17,11 @@ import { useForm, Controller } from "react-hook-form";
 const defaultValues = {
   firstName: "",
   yearsExperience: "",
+  gender: "",
 };
 
 function App() {
-  const { handleSubmit, reset, watch, control, register, ...others } = useForm({ defaultValues });
+  const { handleSubmit, reset, watch, control, register, ...others } = useForm({ defaultValues, mode: "onBlur" });
 
   const onSubmit = (data) => console.log(data);
 
@@ -32,6 +32,28 @@ function App() {
       <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <ReactConversation
           qas={[
+            [
+              <Typography>What's your gender ?</Typography>,
+              (ref) => (
+                <Controller
+                  control={control}
+                  name="gender"
+                  render={({ field, fieldState }) => (
+                    <RadioGroup
+                      ref={ref}
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                    >
+                      <FormControlLabel value="female" control={<Radio />} label="Female" />
+                      <FormControlLabel value="male" control={<Radio />} label="Male" />
+                      <FormControlLabel value="other" control={<Radio />} label="Other" />
+                    </RadioGroup>
+                  )}
+                />
+              ),
+            ],
+
             [
               <Typography>What's your first name ?</Typography>,
               (ref) => (
@@ -79,24 +101,20 @@ function App() {
             [
               <Typography>Have you ever hold a leadership position ?</Typography>,
               (ref) => (
-                <FormControl>
-                  <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
-                    <FormControlLabel value="no" control={<Radio />} label="No" />
-                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                  </RadioGroup>
-                </FormControl>
+                <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                </RadioGroup>
               ),
             ],
 
             [
               <Typography>Do you need a working sponsorship ?</Typography>,
               (ref) => (
-                <FormControl>
-                  <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
-                    <FormControlLabel value="no" control={<Radio />} label="No" />
-                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                  </RadioGroup>
-                </FormControl>
+                <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
+                  <FormControlLabel value="no" control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                </RadioGroup>
               ),
             ],
 
