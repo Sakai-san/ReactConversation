@@ -24,9 +24,9 @@ const defaultValues = {
 };
 
 const schema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  yearsExperience: z.string().min(1, "First name is required"),
-  gender: z.string().min(1, "Gender is required"),
+  firstName: z.string().min(1, "required"),
+  yearsExperience: z.string().min(1, "required"),
+  gender: z.string().min(1, "required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
