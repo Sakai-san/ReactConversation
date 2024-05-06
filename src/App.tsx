@@ -10,6 +10,8 @@ import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -23,6 +25,8 @@ const defaultValues = {
 
 const schema = z.object({
   firstName: z.string().min(1, "First name is required"),
+  yearsExperience: z.string().min(1, "First name is required"),
+  gender: z.string().min(1, "Gender is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -50,16 +54,20 @@ function App() {
                   control={control}
                   name="gender"
                   render={({ field, fieldState }) => (
-                    <RadioGroup
-                      ref={ref}
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                    >
-                      <FormControlLabel value="female" control={<Radio />} label="Female" />
-                      <FormControlLabel value="male" control={<Radio />} label="Male" />
-                      <FormControlLabel value="other" control={<Radio />} label="Other" />
-                    </RadioGroup>
+                    <FormControl sx={{ m: 3 }} error={Boolean(fieldState.error)} variant="standard">
+                      <RadioGroup
+                        {...field}
+                        ref={ref}
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                      >
+                        <FormControlLabel value="female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                      </RadioGroup>
+                      <FormHelperText>{fieldState.error?.message ?? " "}</FormHelperText>
+                    </FormControl>
                   )}
                 />
               ),
