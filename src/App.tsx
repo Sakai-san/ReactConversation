@@ -12,6 +12,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
+import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -54,14 +55,9 @@ function App() {
                   control={control}
                   name="gender"
                   render={({ field, fieldState }) => (
-                    <FormControl sx={{ m: 3 }} error={Boolean(fieldState.error)} variant="standard">
-                      <RadioGroup
-                        {...field}
-                        ref={ref}
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                      >
+                    <FormControl {...field} error={Boolean(fieldState.error)} variant="filled" required>
+                      <FormLabel id="demo-error-radios">Gender</FormLabel>
+                      <RadioGroup ref={ref} row aria-labelledby="demo-error-radios" name="gender">
                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                         <FormControlLabel value="male" control={<Radio />} label="Male" />
                         <FormControlLabel value="other" control={<Radio />} label="Other" />
