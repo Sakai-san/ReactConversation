@@ -24,6 +24,7 @@ const defaultValues = {
   yearsExperience: "",
   hasHoldLearship: "",
   sponsorshipNeeded: "",
+  startingTime: "",
 };
 
 const schema = z.object({
@@ -32,6 +33,7 @@ const schema = z.object({
   yearsExperience: z.string().min(1, "Years of experience is required"),
   hasHoldLearship: z.string().min(1, "Leadership position is required"),
   sponsorshipNeeded: z.string().min(1, "Sponsorship needed is required"),
+  startingTime: z.string().min(1, "Starting time is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -166,13 +168,23 @@ function App() {
             [
               <Typography>When could you start earliest ?</Typography>,
               (ref) => (
-                <TextField
-                  inputRef={ref}
-                  disabled={isSubmitting}
-                  required
+                <Controller
+                  control={control}
                   name="startingTime"
-                  id="starting-time"
-                  type="date"
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      inputRef={ref}
+                      helperText={fieldState.error?.message ?? " "}
+                      error={Boolean(fieldState.error)}
+                      required
+                      disabled={isSubmitting}
+                      id="starting-time"
+                      label="Starting time"
+                      type="date"
+                      InputLabelProps={{ shrink: true }}
+                    />
+                  )}
                 />
               ),
             ],
