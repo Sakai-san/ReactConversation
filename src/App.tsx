@@ -103,7 +103,6 @@ function App() {
                       disabled={isSubmitting}
                       id="first-name"
                       label="First name"
-                      inputProps={{ autoComplete: "new-password" }}
                     />
                   )}
                 />
