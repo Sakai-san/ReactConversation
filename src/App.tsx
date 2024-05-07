@@ -1,7 +1,6 @@
 //import reactLogo from "./assets/react.svg";
 //import viteLogo from "/vite.svg";
 //import "./App.css";
-import { useState } from "react";
 import { z } from "zod";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,7 +15,6 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ReactConversation from "./ReactConversation";
 
@@ -37,17 +35,22 @@ const schema = z.object({
 type ValidationSchema = z.infer<typeof schema>;
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { handleSubmit, reset, watch, control, register, ...others } = useForm<ValidationSchema>({
+  const {
+    handleSubmit,
+    reset,
+    watch,
+    control,
+    register,
+    formState: { isSubmitting, isValid },
+    ...others
+  } = useForm<ValidationSchema>({
     defaultValues,
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
   const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
-    setIsLoading(true);
     await Promise.resolve(console.log("data", data));
-    setIsLoading(true);
   };
 
   console.log("others", others);
@@ -69,9 +72,9 @@ function App() {
                         Gender
                       </FormLabel>
                       <RadioGroup {...field} row aria-labelledby="demo-error-radios" name="gender">
-                        <FormControlLabel value="female" control={<Radio disabled={isLoading} />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio disabled={isLoading} />} label="Male" />
-                        <FormControlLabel value="other" control={<Radio disabled={isLoading} />} label="Other" />
+                        <FormControlLabel value="female" control={<Radio disabled={isSubmitting} />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio disabled={isSubmitting} />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio disabled={isSubmitting} />} label="Other" />
                       </RadioGroup>
                       <FormHelperText>{fieldState.error?.message ?? " "}</FormHelperText>
                     </FormControl>
@@ -93,7 +96,7 @@ function App() {
                       helperText={fieldState.error?.message ?? " "}
                       error={Boolean(fieldState.error)}
                       required
-                      disabled={isLoading}
+                      disabled={isSubmitting}
                       id="first-name"
                       label="First name"
                       inputProps={{ autoComplete: "new-password" }}
@@ -116,7 +119,7 @@ function App() {
                       helperText={fieldState.error?.message ?? " "}
                       error={Boolean(fieldState.error)}
                       required
-                      disabled={isLoading}
+                      disabled={isSubmitting}
                       id="frontend-experience"
                       label="Years of experience"
                       type="number"
@@ -134,8 +137,8 @@ function App() {
                   name="leadershipPosition"
                   render={({ field, fieldState }) => (
                     <RadioGroup {...field} row>
-                      <FormControlLabel ref={ref} value="no" disabled={isLoading} control={<Radio />} label="No" />
-                      <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
+                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
                     </RadioGroup>
                   )}
                 />
@@ -146,8 +149,8 @@ function App() {
               <Typography>Do you need a working sponsorship ?</Typography>,
               (ref) => (
                 <RadioGroup ref={ref} row name="sponsorship-radio">
-                  <FormControlLabel value="no" disabled={isLoading} control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
                 </RadioGroup>
               ),
             ],
@@ -157,7 +160,7 @@ function App() {
               (ref) => (
                 <TextField
                   inputRef={ref}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   required
                   name="startingTime"
                   id="starting-time"
@@ -172,7 +175,7 @@ function App() {
                 <TextField
                   inputRef={ref}
                   required
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   name="expectedSalary"
                   id="salary"
                   label="Salary expectation"
@@ -203,7 +206,7 @@ function App() {
                     "python",
                     "TypeScript",
                   ]}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   filterSelectedOptions
                   renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
                 />
@@ -212,7 +215,7 @@ function App() {
           ]}
         />
 
-        <LoadingButton type="submit" variant="contained" loading={isLoading} disabled={!others.formState.isValid}>
+        <LoadingButton type="submit" variant="contained" loading={isSubmitting} disabled={!isValid}>
           Submit
         </LoadingButton>
       </Box>
