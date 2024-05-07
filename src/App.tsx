@@ -1,8 +1,9 @@
 //import reactLogo from "./assets/react.svg";
 //import viteLogo from "/vite.svg";
 //import "./App.css";
+import { useState } from "react";
 import { z } from "zod";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -33,13 +34,18 @@ const schema = z.object({
 type ValidationSchema = z.infer<typeof schema>;
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
   const { handleSubmit, reset, watch, control, register, ...others } = useForm<ValidationSchema>({
     defaultValues,
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
+    setIsLoading(true);
+    await console.log(data);
+    setIsLoading(true);
+  };
 
   console.log("others", others);
 
@@ -55,9 +61,9 @@ function App() {
                   control={control}
                   name="gender"
                   render={({ field, fieldState }) => (
-                    <FormControl {...field} error={Boolean(fieldState.error)} variant="filled">
+                    <FormControl error={Boolean(fieldState.error)} variant="filled">
                       <FormLabel id="demo-error-radios">Gender</FormLabel>
-                      <RadioGroup ref={ref} row aria-labelledby="demo-error-radios" name="gender">
+                      <RadioGroup {...field} ref={ref} row aria-labelledby="demo-error-radios" name="gender">
                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                         <FormControlLabel value="male" control={<Radio />} label="Male" />
                         <FormControlLabel value="other" control={<Radio />} label="Other" />
