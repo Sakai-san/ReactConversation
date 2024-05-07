@@ -221,7 +221,6 @@ function App() {
                 <Controller
                   control={control}
                   name="technos"
-                  onChange={([, data]) => data}
                   render={({ field, fieldState }) => (
                     <Autocomplete
                       {...field}
@@ -245,7 +244,15 @@ function App() {
                       ]}
                       disabled={isSubmitting}
                       filterSelectedOptions
-                      renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          inputRef={ref}
+                          label="Techos"
+                          helperText={fieldState.error?.message ?? " "}
+                          error={Boolean(fieldState.error)}
+                        />
+                      )}
                     />
                   )}
                 />
