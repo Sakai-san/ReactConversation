@@ -62,8 +62,10 @@ function App() {
                   name="gender"
                   render={({ field, fieldState }) => (
                     <FormControl error={Boolean(fieldState.error)} variant="filled">
-                      <FormLabel id="demo-error-radios">Gender</FormLabel>
-                      <RadioGroup {...field} ref={ref} row aria-labelledby="demo-error-radios" name="gender">
+                      <FormLabel ref={ref} id="demo-error-radios">
+                        Gender
+                      </FormLabel>
+                      <RadioGroup {...field} row aria-labelledby="demo-error-radios" name="gender">
                         <FormControlLabel value="female" control={<Radio disabled={isLoading} />} label="Female" />
                         <FormControlLabel value="male" control={<Radio disabled={isLoading} />} label="Male" />
                         <FormControlLabel value="other" control={<Radio disabled={isLoading} />} label="Other" />
@@ -125,8 +127,8 @@ function App() {
               <Typography>Have you ever hold a leadership position ?</Typography>,
               (ref) => (
                 <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" disabled={isLoading} control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
                 </RadioGroup>
               ),
             ],
@@ -143,7 +145,16 @@ function App() {
 
             [
               <Typography>When could you start earlier ?</Typography>,
-              (ref) => <TextField inputRef={ref} required name="startingTime" id="starting-time" type="date" />,
+              (ref) => (
+                <TextField
+                  inputRef={ref}
+                  disabled={isLoading}
+                  required
+                  name="startingTime"
+                  id="starting-time"
+                  type="date"
+                />
+              ),
             ],
 
             [
