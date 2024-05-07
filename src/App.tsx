@@ -26,7 +26,7 @@ const defaultValues = {
   sponsorshipNeeded: "",
   startingTime: "",
   expectedSalary: "",
-  technos: "",
+  technos: [],
 };
 
 const schema = z.object({
@@ -37,7 +37,7 @@ const schema = z.object({
   sponsorshipNeeded: z.string().min(1, "Sponsorship needed is required"),
   startingTime: z.string().min(1, "Starting time is required"),
   expectedSalary: z.string().min(1, "Salary expectation is required"),
-  technos: z.string().min(1, "Technologies is required"),
+  technos: z.array(z.string()),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -223,6 +223,7 @@ function App() {
                   name="technos"
                   render={({ field, fieldState }) => (
                     <Autocomplete
+                      {...field}
                       style={{ width: 500 }}
                       multiple
                       id="technos"
