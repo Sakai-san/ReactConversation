@@ -42,7 +42,6 @@ function App() {
   });
 
   const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
-    console.log("thomas");
     setIsLoading(true);
     await console.log("data", data);
     setIsLoading(true);
