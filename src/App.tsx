@@ -23,12 +23,14 @@ const defaultValues = {
   firstName: "",
   yearsExperience: "",
   gender: "",
+  leadershipPosition: "",
 };
 
 const schema = z.object({
   firstName: z.string().min(1, "First name is required"),
   yearsExperience: z.string().min(1, "Years of experience is required"),
   gender: z.string().min(1, "Gender is required"),
+  leadershipPosition: z.string().min(1, "Leadership position is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -126,17 +128,23 @@ function App() {
             [
               <Typography>Have you ever hold a leadership position ?</Typography>,
               (ref) => (
-                <RadioGroup ref={ref} row name="leadership-position-radio-buttons-group">
-                  <FormControlLabel value="no" disabled={isLoading} control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
-                </RadioGroup>
+                <Controller
+                  control={control}
+                  name="leadershipPosition"
+                  render={({ field, fieldState }) => (
+                    <RadioGroup {...field} row>
+                      <FormControlLabel ref={ref} value="no" disabled={isLoading} control={<Radio />} label="No" />
+                      <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
+                    </RadioGroup>
+                  )}
+                />
               ),
             ],
 
             [
               <Typography>Do you need a working sponsorship ?</Typography>,
               (ref) => (
-                <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
+                <RadioGroup ref={ref} row name="sponsorship-radio">
                   <FormControlLabel value="no" disabled={isLoading} control={<Radio />} label="No" />
                   <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
                 </RadioGroup>
@@ -144,7 +152,7 @@ function App() {
             ],
 
             [
-              <Typography>When could you start earlier ?</Typography>,
+              <Typography>When could you start earliest ?</Typography>,
               (ref) => (
                 <TextField
                   inputRef={ref}
@@ -167,7 +175,6 @@ function App() {
                   name="expectedSalary"
                   id="salary"
                   label="Salary expectation"
-                  InputLabelProps={{ shrink: true }}
                   type="number"
                 />
               ),
