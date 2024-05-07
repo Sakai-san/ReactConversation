@@ -221,6 +221,7 @@ function App() {
                 <Controller
                   control={control}
                   name="technos"
+                  onChange={([, data]) => data}
                   render={({ field, fieldState }) => (
                     <Autocomplete
                       {...field}
