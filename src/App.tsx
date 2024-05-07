@@ -22,14 +22,16 @@ const defaultValues = {
   gender: "",
   firstName: "",
   yearsExperience: "",
-  leadershipPosition: "",
+  hasHoldLearship: "",
+  sponsorshipNeeded: "",
 };
 
 const schema = z.object({
   gender: z.string().min(1, "Gender is required"),
   firstName: z.string().min(1, "First name is required"),
   yearsExperience: z.string().min(1, "Years of experience is required"),
-  leadershipPosition: z.string().min(1, "Leadership position is required"),
+  hasHoldLearship: z.string().min(1, "Leadership position is required"),
+  sponsorshipNeeded: z.string().min(1, "Sponsorship needed is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -134,7 +136,7 @@ function App() {
               (ref) => (
                 <Controller
                   control={control}
-                  name="leadershipPosition"
+                  name="hasHoldLearship"
                   render={({ field, fieldState }) => (
                     <RadioGroup {...field} row>
                       <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
@@ -148,10 +150,16 @@ function App() {
             [
               <Typography>Do you need a working sponsorship ?</Typography>,
               (ref) => (
-                <RadioGroup ref={ref} row name="sponsorship-radio">
-                  <FormControlLabel value="no" disabled={isSubmitting} control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
-                </RadioGroup>
+                <Controller
+                  control={control}
+                  name="sponsorshipNeeded"
+                  render={({ field, fieldState }) => (
+                    <RadioGroup {...field} row>
+                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
+                    </RadioGroup>
+                  )}
+                />
               ),
             ],
 
