@@ -42,8 +42,9 @@ function App() {
   });
 
   const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
+    console.log("thomas");
     setIsLoading(true);
-    await console.log(data);
+    await console.log("data", data);
     setIsLoading(true);
   };
 
@@ -203,7 +204,7 @@ function App() {
             ],
           ]}
         />
-        {Boolean(others.formState.errors) && (
+        {!others.formState.errors && (
           <Button type="submit" variant="contained">
             Submit
           </Button>
