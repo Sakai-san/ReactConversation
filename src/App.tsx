@@ -25,6 +25,7 @@ const defaultValues = {
   hasHoldLearship: "",
   sponsorshipNeeded: "",
   startingTime: "",
+  expectedSalary: "",
 };
 
 const schema = z.object({
@@ -34,6 +35,7 @@ const schema = z.object({
   hasHoldLearship: z.string().min(1, "Leadership position is required"),
   sponsorshipNeeded: z.string().min(1, "Sponsorship needed is required"),
   startingTime: z.string().min(1, "Starting time is required"),
+  expectedSalary: z.string().min(1, "Salary expectation is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -191,14 +193,22 @@ function App() {
             [
               <Typography>What are your salary expectation ?</Typography>,
               (ref) => (
-                <TextField
-                  inputRef={ref}
-                  required
-                  disabled={isSubmitting}
+                <Controller
+                  control={control}
                   name="expectedSalary"
-                  id="salary"
-                  label="Salary expectation"
-                  type="number"
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      inputRef={ref}
+                      helperText={fieldState.error?.message ?? " "}
+                      error={Boolean(fieldState.error)}
+                      required
+                      disabled={isSubmitting}
+                      id="salary"
+                      label="Salary expectation"
+                      type="number"
+                    />
+                  )}
                 />
               ),
             ],
