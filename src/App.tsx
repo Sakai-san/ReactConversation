@@ -64,9 +64,9 @@ function App() {
                     <FormControl error={Boolean(fieldState.error)} variant="filled">
                       <FormLabel id="demo-error-radios">Gender</FormLabel>
                       <RadioGroup {...field} ref={ref} row aria-labelledby="demo-error-radios" name="gender">
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                        <FormControlLabel value="female" control={<Radio disabled={isLoading} />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio disabled={isLoading} />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio disabled={isLoading} />} label="Other" />
                       </RadioGroup>
                       <FormHelperText>{fieldState.error?.message ?? " "}</FormHelperText>
                     </FormControl>
@@ -88,6 +88,7 @@ function App() {
                       helperText={fieldState.error?.message ?? " "}
                       error={Boolean(fieldState.error)}
                       required
+                      disabled={isLoading}
                       id="first-name"
                       label="First name"
                       inputProps={{ autoComplete: "new-password" }}
@@ -110,6 +111,7 @@ function App() {
                       helperText={fieldState.error?.message ?? " "}
                       error={Boolean(fieldState.error)}
                       required
+                      disabled={isLoading}
                       id="frontend-experience"
                       label="Years of experience"
                       type="number"
@@ -133,8 +135,8 @@ function App() {
               <Typography>Do you need a working sponsorship ?</Typography>,
               (ref) => (
                 <RadioGroup ref={ref} row name="sponsorship-radio-buttons-group">
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                  <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel value="no" disabled={isLoading} control={<Radio />} label="No" />
+                  <FormControlLabel value="yes" disabled={isLoading} control={<Radio />} label="Yes" />
                 </RadioGroup>
               ),
             ],
@@ -150,6 +152,7 @@ function App() {
                 <TextField
                   inputRef={ref}
                   required
+                  disabled={isLoading}
                   name="expectedSalary"
                   id="salary"
                   label="Salary expectation"
@@ -181,6 +184,7 @@ function App() {
                     "python",
                     "TypeScript",
                   ]}
+                  disabled={isLoading}
                   filterSelectedOptions
                   renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
                 />
