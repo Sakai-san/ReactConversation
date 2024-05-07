@@ -19,16 +19,16 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import ReactConversation from "./ReactConversation";
 
 const defaultValues = {
+  gender: "",
   firstName: "",
   yearsExperience: "",
-  gender: "",
   leadershipPosition: "",
 };
 
 const schema = z.object({
+  gender: z.string().min(1, "Gender is required"),
   firstName: z.string().min(1, "First name is required"),
   yearsExperience: z.string().min(1, "Years of experience is required"),
-  gender: z.string().min(1, "Gender is required"),
   leadershipPosition: z.string().min(1, "Leadership position is required"),
 });
 
