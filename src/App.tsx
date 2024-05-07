@@ -17,6 +17,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 import ReactConversation from "./ReactConversation";
 
 const defaultValues = {
@@ -211,9 +212,9 @@ function App() {
           ]}
         />
 
-        <Button type="submit" variant="contained" disabled={!others.formState.isValid}>
+        <LoadingButton type="submit" variant="contained" loading={isLoading} disabled={!others.formState.isValid}>
           Submit
-        </Button>
+        </LoadingButton>
       </Box>
     </Container>
   );
