@@ -26,6 +26,7 @@ const defaultValues = {
   sponsorshipNeeded: "",
   startingTime: "",
   expectedSalary: "",
+  technos: "",
 };
 
 const schema = z.object({
@@ -36,6 +37,7 @@ const schema = z.object({
   sponsorshipNeeded: z.string().min(1, "Sponsorship needed is required"),
   startingTime: z.string().min(1, "Starting time is required"),
   expectedSalary: z.string().min(1, "Salary expectation is required"),
+  technos: z.string().min(1, "Technologies is required"),
 });
 
 type ValidationSchema = z.infer<typeof schema>;
@@ -216,28 +218,34 @@ function App() {
             [
               <Typography>What technologies do you have a professional experience with ?</Typography>,
               (ref) => (
-                <Autocomplete
-                  style={{ width: 500 }}
-                  multiple
-                  id="technos"
-                  options={[
-                    "react",
-                    "Java EE",
-                    "Spring Boot",
-                    "php",
-                    "laravel",
-                    "symphony",
-                    "Django",
-                    "nodejs",
-                    "Express",
-                    "Angular",
-                    "AngularJS",
-                    "python",
-                    "TypeScript",
-                  ]}
-                  disabled={isSubmitting}
-                  filterSelectedOptions
-                  renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
+                <Controller
+                  control={control}
+                  name="technos"
+                  render={({ field, fieldState }) => (
+                    <Autocomplete
+                      style={{ width: 500 }}
+                      multiple
+                      id="technos"
+                      options={[
+                        "react",
+                        "Java EE",
+                        "Spring Boot",
+                        "php",
+                        "laravel",
+                        "symphony",
+                        "Django",
+                        "nodejs",
+                        "Express",
+                        "Angular",
+                        "AngularJS",
+                        "python",
+                        "TypeScript",
+                      ]}
+                      disabled={isSubmitting}
+                      filterSelectedOptions
+                      renderInput={(params) => <TextField {...params} inputRef={ref} label="Techos" />}
+                    />
+                  )}
                 />
               ),
             ],
