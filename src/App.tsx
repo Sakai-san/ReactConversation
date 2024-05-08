@@ -224,6 +224,7 @@ function App() {
                   render={({ field, fieldState }) => (
                     <Autocomplete
                       {...field}
+                      onChange={(e, selected, cause, reason) => field.onChange(selected)}
                       style={{ width: 500 }}
                       multiple
                       id="technos"
