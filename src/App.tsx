@@ -89,12 +89,10 @@ function App() {
 
               [
                 <Typography>What's your first name ?</Typography>,
-                (ref) => (
-                  <ControlledTextField
-                    name="firstName"
-                    TextFieldProps={{ label: "First name", id: "first-name", required: true }}
-                  />
-                ),
+                <ControlledTextField
+                  name="firstName"
+                  TextFieldProps={{ label: "First name", id: "first-name", required: true }}
+                />,
               ],
 
               [
