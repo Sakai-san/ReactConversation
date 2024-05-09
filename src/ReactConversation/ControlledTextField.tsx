@@ -12,7 +12,6 @@ const ControlledTextField: FC<ControlledTextFieldProps> = ({ name, TextFieldProp
     formState: { isSubmitting },
   } = formContext;
   console.log("formContext", formContext);
-  console.log("gender state", formContext.control.getFieldState("gender", formContext.formState));
   return (
     <Controller
       control={control}

@@ -72,9 +72,7 @@ function App() {
                     name="gender"
                     render={({ field, fieldState }) => (
                       <FormControl error={Boolean(fieldState.error)} variant="filled">
-                        <FormLabel ref={ref} id="demo-error-radios">
-                          Gender
-                        </FormLabel>
+                        <FormLabel id="demo-error-radios">Gender</FormLabel>
                         <RadioGroup {...field} row aria-labelledby="demo-error-radios" name="gender">
                           <FormControlLabel value="female" control={<Radio disabled={isSubmitting} />} label="Female" />
                           <FormControlLabel value="male" control={<Radio disabled={isSubmitting} />} label="Male" />
