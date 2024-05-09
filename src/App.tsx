@@ -151,25 +151,15 @@ function App() {
 
               [
                 <Typography>What are your salary expectation ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="expectedSalary"
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        inputRef={ref}
-                        helperText={fieldState.error?.message ?? " "}
-                        error={Boolean(fieldState.error)}
-                        required
-                        disabled={isSubmitting}
-                        id="salary"
-                        label="Salary expectation"
-                        type="number"
-                      />
-                    )}
-                  />
-                ),
+                <ControlledTextField
+                  name="expectedSalary"
+                  TextFieldProps={{
+                    id: "salary",
+                    label: "Salary expectation",
+                    type: "number",
+                    required: true,
+                  }}
+                />,
               ],
 
               [
