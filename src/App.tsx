@@ -6,7 +6,6 @@ import { useForm, Controller, SubmitHandler, FormProvider } from "react-hook-for
 import { zodResolver } from "@hookform/resolvers/zod";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -169,6 +168,7 @@ function App() {
                 <ControlledAutocomplete
                   name="technos"
                   AutocompleteProps={{
+                    sx: { minWidth: 248 },
                     id: "technos",
                     options: [
                       "react",
