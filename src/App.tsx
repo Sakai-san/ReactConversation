@@ -194,7 +194,7 @@ function App() {
             ]}
           />
 
-          <LoadingButton type="submit" variant="contained" loading={isSubmitting} disabled={!isValid}>
+          <LoadingButton sx={{ mt: 5 }} type="submit" variant="contained" loading={isSubmitting}>
             Submit
           </LoadingButton>
         </Box>
