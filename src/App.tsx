@@ -169,7 +169,6 @@ function App() {
                 <ControlledAutocomplete
                   name="technos"
                   AutocompleteProps={{
-                    sx: { width: 500 },
                     id: "technos",
                     options: [
                       "react",
