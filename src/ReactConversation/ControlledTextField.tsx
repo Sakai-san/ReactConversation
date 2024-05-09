@@ -1,11 +1,23 @@
-import { FC } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { ReactElement } from "react";
+import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { ControlledInput } from "./types";
 
-type ControlledTextFieldProps = ControlledInput<{ TextFieldProps: TextFieldProps }>;
+type ControlledTextFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
+  TextFieldProps: TextFieldProps;
+};
 
-const ControlledTextField: FC<ControlledTextFieldProps> = ({ name, TextFieldProps }) => {
+const ControlledTextField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  name,
+  defaultValue,
+  TextFieldProps,
+}: ControlledTextFieldProps<TFieldValues, TName>): ReactElement<ControlledTextFieldProps<TFieldValues, TName>> => {
   const formContext = useFormContext();
   const {
     control,
