@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ReactConversation from "./ReactConversation";
 import ControlledTextField from "./ReactConversation/ControlledTextField";
+import ControlledAutocomplete from "./ReactConversation/ControlledAutocomplete";
 
 const defaultValues = {
   gender: "",
@@ -165,7 +166,30 @@ function App() {
 
               [
                 <Typography>What technologies do you have a professional experience with ?</Typography>,
-                (ref) => (
+
+                <ControlledAutocomplete
+                  name="technos"
+                  AutocompleteProps={{
+                    id: "technos",
+                    options: [
+                      "react",
+                      "Java EE",
+                      "Spring Boot",
+                      "php",
+                      "laravel",
+                      "symphony",
+                      "Django",
+                      "nodejs",
+                      "Express",
+                      "Angular",
+                      "AngularJS",
+                      "python",
+                      "TypeScript",
+                    ],
+                  }}
+                />,
+
+                /*(ref) => (
                   <Controller
                     control={control}
                     name="technos"
@@ -175,22 +199,6 @@ function App() {
                         onChange={(event, value, reason, details) => field.onChange(value)}
                         style={{ width: 500 }}
                         multiple
-                        id="technos"
-                        options={[
-                          "react",
-                          "Java EE",
-                          "Spring Boot",
-                          "php",
-                          "laravel",
-                          "symphony",
-                          "Django",
-                          "nodejs",
-                          "Express",
-                          "Angular",
-                          "AngularJS",
-                          "python",
-                          "TypeScript",
-                        ]}
                         disabled={isSubmitting}
                         filterSelectedOptions
                         renderInput={(params) => (
@@ -205,7 +213,7 @@ function App() {
                       />
                     )}
                   />
-                ),
+                )*/
               ],
             ]}
           />

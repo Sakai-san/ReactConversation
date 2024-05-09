@@ -37,22 +37,6 @@ const ControlledAutocomplete = <
           onChange={(event, value, reason, details) => field.onChange(value)}
           style={{ width: 500 }}
           multiple
-          id="technos"
-          options={[
-            "react",
-            "Java EE",
-            "Spring Boot",
-            "php",
-            "laravel",
-            "symphony",
-            "Django",
-            "nodejs",
-            "Express",
-            "Angular",
-            "AngularJS",
-            "python",
-            "TypeScript",
-          ]}
           disabled={isSubmitting}
           filterSelectedOptions
           renderInput={(params) => (
