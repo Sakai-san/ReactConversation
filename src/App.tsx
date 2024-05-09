@@ -137,26 +137,16 @@ function App() {
 
               [
                 <Typography>When could you start earliest ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="startingTime"
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        inputRef={ref}
-                        helperText={fieldState.error?.message ?? " "}
-                        error={Boolean(fieldState.error)}
-                        required
-                        disabled={isSubmitting}
-                        id="starting-time"
-                        label="Starting time"
-                        type="date"
-                        InputLabelProps={{ shrink: true }}
-                      />
-                    )}
-                  />
-                ),
+                <ControlledTextField
+                  name="startingTime"
+                  TextFieldProps={{
+                    id: "starting-time",
+                    label: "Starting time",
+                    type: "date",
+                    required: true,
+                    InputLabelProps: { shrink: true },
+                  }}
+                />,
               ],
 
               [
