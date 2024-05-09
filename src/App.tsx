@@ -190,32 +190,6 @@ function App() {
                     label: "Techos",
                   }}
                 />,
-
-                /*(ref) => (
-                  <Controller
-                    control={control}
-                    name="technos"
-                    render={({ field, fieldState }) => (
-                      <Autocomplete
-                        {...field}
-                        onChange={(event, value, reason, details) => field.onChange(value)}
-                        style={{ width: 500 }}
-                        multiple
-                        disabled={isSubmitting}
-                        filterSelectedOptions
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            inputRef={ref}
-                            label="Techos"
-                            helperText={fieldState.error?.message ?? " "}
-                            error={Boolean(fieldState.error)}
-                          />
-                        )}
-                      />
-                    )}
-                  />
-                )*/
               ],
             ]}
           />
