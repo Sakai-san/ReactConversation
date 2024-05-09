@@ -97,25 +97,10 @@ function App() {
 
               [
                 <Typography>How long have you been doing Frontend developement ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="yearsExperience"
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        inputRef={ref}
-                        helperText={fieldState.error?.message ?? " "}
-                        error={Boolean(fieldState.error)}
-                        required
-                        disabled={isSubmitting}
-                        id="frontend-experience"
-                        label="Years of experience"
-                        type="number"
-                      />
-                    )}
-                  />
-                ),
+                <ControlledTextField
+                  name="yearsExperience"
+                  TextFieldProps={{ label: "First name", id: "years-experience", required: true, type: "number" }}
+                />,
               ],
 
               [
