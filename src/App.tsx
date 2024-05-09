@@ -64,7 +64,7 @@ function App() {
         autoComplete="off"
         onSubmit={handleSubmit(onSubmit)}
         formState={formState}
-        //</Container>{...formProviderProps
+        {...others}
       >
         <ReactConversation
           qas={[
