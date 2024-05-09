@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { Controller, useFormContext, ControllerProps } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
+import { ControlledInput } from "./types";
 
-type ControlledTextFieldProps = Pick<ControllerProps, "name"> & { TextFieldProps: TextFieldProps };
+type ControlledTextFieldProps = ControlledInput<{ TextFieldProps: TextFieldProps }>;
 
 const ControlledTextField: FC<ControlledTextFieldProps> = ({ name, TextFieldProps }) => {
   const formContext = useFormContext();
