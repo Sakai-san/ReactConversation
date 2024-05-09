@@ -8,6 +8,7 @@ type ControlledAutocompleteProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
   AutocompleteProps: Omit<AutocompleteProps<TFieldValues[TName], true, false, false>, "renderInput">;
+  TextFieldProps: TextFieldProps;
 };
 
 const ControlledAutocomplete = <
@@ -17,6 +18,7 @@ const ControlledAutocomplete = <
   name,
   defaultValue,
   AutocompleteProps,
+  TextFieldProps,
 }: ControlledAutocompleteProps<TFieldValues, TName>): ReactElement<
   ControlledAutocompleteProps<TFieldValues, TName>
 > => {
@@ -42,9 +44,9 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Techos"
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
+              {...TextFieldProps}
             />
           )}
           {...AutocompleteProps}

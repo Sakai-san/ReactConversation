@@ -186,6 +186,9 @@ function App() {
                       "TypeScript",
                     ],
                   }}
+                  TextFieldProps={{
+                    label: "Techos",
+                  }}
                 />,
 
                 /*(ref) => (
