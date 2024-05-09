@@ -49,14 +49,12 @@ function App() {
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
-  const { handleSubmit, control, formState, ...others } = formContext;
+  const { handleSubmit, control, formState } = formContext;
   const { isSubmitting, isValid } = formState;
 
   const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
     await Promise.resolve(console.log("data", data));
   };
-
-  console.log("others", others);
 
   return (
     <Container>
@@ -97,7 +95,12 @@ function App() {
                 <Typography>How long have you been doing Frontend developement ?</Typography>,
                 <ControlledTextField
                   name="yearsExperience"
-                  TextFieldProps={{ label: "First name", id: "years-experience", required: true, type: "number" }}
+                  TextFieldProps={{
+                    label: "Years of experience",
+                    id: "years-experience",
+                    required: true,
+                    type: "number",
+                  }}
                 />,
               ],
 
