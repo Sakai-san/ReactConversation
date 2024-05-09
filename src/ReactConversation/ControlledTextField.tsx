@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
-import { ControlledInput } from "./types";
 
 type ControlledTextFieldProps<
   TFieldValues extends FieldValues = FieldValues,
