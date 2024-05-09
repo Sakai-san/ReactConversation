@@ -37,7 +37,6 @@ const ControlledAutocomplete = <
         <Autocomplete
           {...field}
           onChange={(event, value, reason, details) => field.onChange(value)}
-          style={{ width: 500 }}
           multiple
           disabled={isSubmitting}
           filterSelectedOptions
