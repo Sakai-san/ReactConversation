@@ -2,7 +2,7 @@
 //import viteLogo from "/vite.svg";
 //import "./App.css";
 import { z } from "zod";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useForm, Controller, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -17,6 +17,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import LoadingButton from "@mui/lab/LoadingButton";
 import ReactConversation from "./ReactConversation";
+import ControlledTextField from "./ReactConversation/ControlledTextField";
 
 const defaultValues = {
   gender: "",
@@ -43,19 +44,12 @@ const schema = z.object({
 type ValidationSchema = z.infer<typeof schema>;
 
 function App() {
-  const {
-    handleSubmit,
-    reset,
-    watch,
-    control,
-    register,
-    formState: { isSubmitting, isValid },
-    ...others
-  } = useForm<ValidationSchema>({
+  const { handleSubmit, control, formState, ...others } = useForm<ValidationSchema>({
     defaultValues,
     resolver: zodResolver(schema),
     mode: "onBlur",
   });
+  const { isSubmitting, isValid } = formState;
 
   const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
     await Promise.resolve(console.log("data", data));
@@ -65,7 +59,13 @@ function App() {
 
   return (
     <Container>
-      <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider
+        control={control}
+        autoComplete="off"
+        onSubmit={handleSubmit(onSubmit)}
+        formState={formState}
+        //</Container>{...formProviderProps
+      >
         <ReactConversation
           qas={[
             [
@@ -94,23 +94,26 @@ function App() {
             [
               <Typography>What's your first name ?</Typography>,
               (ref) => (
-                <Controller
-                  control={control}
-                  name="firstName"
-                  render={({ field, fieldState }) => (
-                    <TextField
-                      {...field}
-                      inputRef={ref}
-                      helperText={fieldState.error?.message ?? " "}
-                      error={Boolean(fieldState.error)}
-                      required
-                      disabled={isSubmitting}
-                      id="first-name"
-                      label="First name"
-                    />
-                  )}
-                />
+                <ControlledTextField name="firstName" TextFieldProps={{ label: "First name", id: "first-name" }} />
               ),
+              // (ref) => (
+              //   <Controller
+              //     control={control}
+              //     name="firstName"
+              //     render={({ field, fieldState }) => (
+              //       <TextField
+              //         {...field}
+              //         inputRef={ref}
+              //         helperText={fieldState.error?.message ?? " "}
+              //         error={Boolean(fieldState.error)}
+              //         required
+              //         disabled={isSubmitting}
+              //         id="first-name"
+              //         label="First name"
+              //       />
+              //     )}
+              //   />
+              // ),
             ],
 
             [
@@ -265,7 +268,7 @@ function App() {
         <LoadingButton type="submit" variant="contained" loading={isSubmitting} disabled={!isValid}>
           Submit
         </LoadingButton>
-      </Box>
+      </FormProvider>
     </Container>
   );
 }
