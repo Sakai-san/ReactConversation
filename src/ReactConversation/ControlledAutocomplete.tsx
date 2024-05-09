@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
 
 type ControlledAutocompleteProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
-  TextFieldProps: TextFieldProps;
+  AutocompleteProps: AutocompleteProps;
 };
 
 const ControlledAutocomplete = <
@@ -16,7 +16,7 @@ const ControlledAutocomplete = <
 >({
   name,
   defaultValue,
-  TextFieldProps,
+  AutocompleteProps,
 }: ControlledAutocompleteProps<TFieldValues, TName>): ReactElement<
   ControlledAutocompleteProps<TFieldValues, TName>
 > => {
@@ -63,6 +63,7 @@ const ControlledAutocomplete = <
               error={Boolean(fieldState.error)}
             />
           )}
+          {...AutocompleteProps}
         />
       )}
     />
