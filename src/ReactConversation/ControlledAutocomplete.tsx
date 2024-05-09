@@ -7,7 +7,7 @@ type ControlledAutocompleteProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
-  AutocompleteProps: AutocompleteProps;
+  AutocompleteProps: Omit<AutocompleteProps<TFieldValues[TName], true, false, false>, "renderInput">;
 };
 
 const ControlledAutocomplete = <
