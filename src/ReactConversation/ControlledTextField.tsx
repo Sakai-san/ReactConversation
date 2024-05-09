@@ -16,6 +16,7 @@ const ControlledTextField: FC<ControlledTextFieldProps> = ({ name, TextFieldProp
     <Controller
       control={control}
       name={name}
+      defaultValue={defaultValue}
       render={({ field, fieldState }) => (
         <TextField
           {...field}
