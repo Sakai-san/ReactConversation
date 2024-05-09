@@ -58,7 +58,6 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              inputRef={ref}
               label="Techos"
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
