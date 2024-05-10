@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -10,6 +11,7 @@ type ReactConversationProps = {
 };
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
+  const formContext = useFormContext();
   const [position, setPostion] = useState(0);
   const questionsCount = qas.length;
 
@@ -20,11 +22,15 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 
   const asked = qas.slice(0, position + 1);
 
-  useEffect(() => {
-    if (refs[position]) {
-      refs[position].focus();
-    }
-  }, [qas, position]);
+  const {
+    control,
+    formState: { isSubmitting },
+  } = formContext;
+
+  console.log("formContext", formContext);
+  console.log("formContext.control._fields", formContext.control._fields);
+  console.log("formContext.formState", formContext.getFieldState("yearsExperience", formContext.formState));
+  console.log("formContext.getValues()", formContext.getValues());
 
   return (
     <Stack useFlexGap gap={3}>

@@ -53,23 +53,6 @@ const ControlledAutocomplete = <
       )}
     />
   );
-
-  return (
-    <Controller
-      control={control}
-      name={name}
-      defaultValue={defaultValue}
-      render={({ field, fieldState }) => (
-        <TextField
-          {...field}
-          helperText={fieldState.error?.message ?? " "}
-          error={Boolean(fieldState.error)}
-          disabled={isSubmitting}
-          {...TextFieldProps}
-        />
-      )}
-    />
-  );
 };
 
 export default ControlledAutocomplete;
