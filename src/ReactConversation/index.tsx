@@ -15,9 +15,6 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const [position, setPostion] = useState(0);
   const questionsCount = qas.length;
 
-  // refs is re-initialized each time the component re-renders and populated in batch after rendering
-  const refs: Array<HTMLElement> = [];
-
   const next = () => setPostion((position) => position + 1);
 
   const asked = qas.slice(0, position + 1);
@@ -35,13 +32,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   return (
     <Stack useFlexGap gap={3}>
       {asked.map((qa, index) => (
-        <QA
-          key={index}
-          qa={qa}
-          ref={(el: HTMLElement) => {
-            refs[index] = el;
-          }}
-        />
+        <QA key={index} qa={qa} />
       ))}
       {position < questionsCount - 1 && (
         <Box
