@@ -84,7 +84,7 @@ function App() {
 
               [
                 <Typography>What's your first name ?</Typography>,
-                <ControlledTextField
+                <ControlledTextField<ValidationSchema>
                   name="firstName"
                   TextFieldProps={{ label: "First name", id: "first-name", required: true }}
                 />,
@@ -92,7 +92,7 @@ function App() {
 
               [
                 <Typography>How long have you been doing Frontend developement ?</Typography>,
-                <ControlledTextField
+                <ControlledTextField<ValidationSchema>
                   name="yearsExperience"
                   TextFieldProps={{
                     label: "Years of experience",
@@ -137,7 +137,7 @@ function App() {
 
               [
                 <Typography>When could you start earliest ?</Typography>,
-                <ControlledTextField
+                <ControlledTextField<ValidationSchema>
                   name="startingTime"
                   TextFieldProps={{
                     id: "starting-time",
@@ -151,7 +151,7 @@ function App() {
 
               [
                 <Typography>What are your salary expectation ?</Typography>,
-                <ControlledTextField
+                <ControlledTextField<ValidationSchema>
                   name="expectedSalary"
                   TextFieldProps={{
                     id: "salary",
@@ -165,7 +165,7 @@ function App() {
               [
                 <Typography>What technologies do you have a professional experience with ?</Typography>,
 
-                <ControlledAutocomplete
+                <ControlledAutocomplete<ValidationSchema>
                   name="technos"
                   AutocompleteProps={{
                     sx: { minWidth: 248 },

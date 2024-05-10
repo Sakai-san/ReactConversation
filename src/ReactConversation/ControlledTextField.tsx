@@ -1,6 +1,8 @@
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement } from "react";
 import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues, RefCallBack } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
+import { useFocusOnMount } from "./useFocusOnMount";
+import { decorateCallbackRef } from "./utils";
 
 type ControlledTextFieldProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -23,18 +25,7 @@ const ControlledTextField = <
     formState: { isSubmitting },
   } = formContext;
 
-  const reference = useRef<HTMLElement>();
-
-  const decorateCallbackRef =
-    (refCallback: RefCallBack) =>
-    (...element: Parameters<RefCallBack>) => {
-      refCallback(element[0]);
-      reference.current = element[0];
-    };
-
-  useEffect(() => {
-    reference.current?.querySelector?.("input")?.focus();
-  }, []);
+  const componentRef = useFocusOnMount();
 
   return (
     <Controller
@@ -44,7 +35,7 @@ const ControlledTextField = <
       render={({ field, fieldState }) => (
         <TextField
           {...field}
-          ref={decorateCallbackRef(field.ref)}
+          ref={decorateCallbackRef(componentRef)(field.ref)}
           helperText={fieldState.error?.message ?? " "}
           error={Boolean(fieldState.error)}
           disabled={isSubmitting}
