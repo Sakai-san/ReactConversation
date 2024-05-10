@@ -1,7 +1,9 @@
-import { ReactElement, useEffect, useRef } from "react";
-import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues, RefCallBack } from "react-hook-form";
+import { ReactElement } from "react";
+import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
+import { useFocusOnMount } from "./useFocusOnMount";
+import { decorateCallbackRef } from "./utils";
 
 type ControlledAutocompleteProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -28,18 +30,7 @@ const ControlledAutocomplete = <
     formState: { isSubmitting },
   } = formContext;
 
-  const componentRef = useRef<HTMLElement>();
-
-  const decorateCallbackRef =
-    (refCallback: RefCallBack) =>
-    (...element: Parameters<RefCallBack>) => {
-      refCallback(element[0]);
-      componentRef.current = element[0];
-    };
-
-  useEffect(() => {
-    componentRef.current?.querySelector?.("input")?.focus();
-  }, []);
+  const componentRef = useFocusOnMount();
 
   return (
     <Controller
@@ -56,7 +47,7 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              ref={decorateCallbackRef(field.ref)}
+              ref={decorateCallbackRef(componentRef)(field.ref)}
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
               {...TextFieldProps}
