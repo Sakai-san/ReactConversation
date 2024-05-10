@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useRef } from "react";
-import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues } from "react-hook-form";
+import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues, RefCallBack } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 
 type ControlledTextFieldProps<
@@ -25,8 +25,8 @@ const ControlledTextField = <
 
   const reference = useRef<HTMLElement>();
 
-  const decorateCallbackRef = (cbRef) => (element) => {
-    cbRef(element);
+  const decorateCallbackRef = (refCallback: RefCallBack) => (element: HTMLElement) => {
+    refCallback(element);
     reference.current = element;
   };
 
