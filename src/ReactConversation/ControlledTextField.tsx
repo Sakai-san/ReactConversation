@@ -25,10 +25,12 @@ const ControlledTextField = <
 
   const reference = useRef<HTMLElement>();
 
-  const decorateCallbackRef = (refCallback: RefCallBack) => (element: HTMLElement) => {
-    refCallback(element);
-    reference.current = element;
-  };
+  const decorateCallbackRef =
+    (refCallback: RefCallBack) =>
+    (...element: Parameters<RefCallBack>) => {
+      refCallback(element[0]);
+      reference.current = element[0];
+    };
 
   useEffect(() => {
     reference.current?.querySelector?.("input")?.focus();
