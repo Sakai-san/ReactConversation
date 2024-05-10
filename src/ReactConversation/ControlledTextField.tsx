@@ -7,7 +7,7 @@ import { decorateCallbackRef } from "./utils";
 type ControlledTextFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
+> = Pick<UseControllerProps<TFieldValues, TName>, "name" | "control" | "defaultValue"> & {
   TextFieldProps: TextFieldProps;
 };
 

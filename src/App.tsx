@@ -84,7 +84,8 @@ function App() {
 
               [
                 <Typography>What's your first name ?</Typography>,
-                <ControlledTextField<ValidationSchema>
+                <ControlledTextField
+                  control={formContext.control}
                   name="firstName"
                   TextFieldProps={{ label: "First name", id: "first-name", required: true }}
                 />,
@@ -92,7 +93,8 @@ function App() {
 
               [
                 <Typography>How long have you been doing Frontend developement ?</Typography>,
-                <ControlledTextField<ValidationSchema>
+                <ControlledTextField
+                  control={formContext.control}
                   name="yearsExperience"
                   TextFieldProps={{
                     label: "Years of experience",
@@ -137,7 +139,8 @@ function App() {
 
               [
                 <Typography>When could you start earliest ?</Typography>,
-                <ControlledTextField<ValidationSchema>
+                <ControlledTextField
+                  control={formContext.control}
                   name="startingTime"
                   TextFieldProps={{
                     id: "starting-time",
@@ -151,7 +154,8 @@ function App() {
 
               [
                 <Typography>What are your salary expectation ?</Typography>,
-                <ControlledTextField<ValidationSchema>
+                <ControlledTextField
+                  control={formContext.control}
                   name="expectedSalary"
                   TextFieldProps={{
                     id: "salary",
@@ -165,7 +169,8 @@ function App() {
               [
                 <Typography>What technologies do you have a professional experience with ?</Typography>,
 
-                <ControlledAutocomplete<ValidationSchema>
+                <ControlledAutocomplete
+                  control={formContext.control}
                   name="technos"
                   AutocompleteProps={{
                     sx: { minWidth: 248 },

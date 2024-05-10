@@ -8,7 +8,7 @@ import { decorateCallbackRef } from "./utils";
 type ControlledAutocompleteProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Pick<UseControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
+> = Pick<UseControllerProps<TFieldValues, TName>, "name" | "control" | "defaultValue"> & {
   AutocompleteProps: Omit<AutocompleteProps<TFieldValues[TName], true, false, false>, "renderInput">;
   TextFieldProps: TextFieldProps;
 };
