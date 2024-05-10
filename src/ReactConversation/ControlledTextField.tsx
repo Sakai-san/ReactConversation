@@ -23,7 +23,7 @@ const ControlledTextField = <
     formState: { isSubmitting },
   } = formContext;
 
-  const reference = useRef();
+  const reference = useRef<HTMLElement>();
 
   const decorateCallbackRef = (cbRef) => (node) => {
     cbRef(node);
