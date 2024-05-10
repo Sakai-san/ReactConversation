@@ -31,9 +31,7 @@ const ControlledTextField = <
   };
 
   useEffect(() => {
-    if (reference.current) {
-      reference.current?.querySelector?.("input")?.focus();
-    }
+    reference.current?.querySelector?.("input")?.focus();
   }, []);
 
   return (
