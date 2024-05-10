@@ -31,9 +31,7 @@ const ControlledTextField = <
   };
 
   useEffect(() => {
-    console.log("reference", reference);
     if (reference.current) {
-      console.log("after ref", reference);
       reference.current?.querySelector?.("input")?.focus();
     }
   }, []);
