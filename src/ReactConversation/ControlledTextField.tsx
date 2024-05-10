@@ -25,9 +25,9 @@ const ControlledTextField = <
 
   const reference = useRef<HTMLElement>();
 
-  const decorateCallbackRef = (cbRef) => (node) => {
-    cbRef(node);
-    reference.current = node;
+  const decorateCallbackRef = (cbRef) => (element) => {
+    cbRef(element);
+    reference.current = element;
   };
 
   useEffect(() => {
