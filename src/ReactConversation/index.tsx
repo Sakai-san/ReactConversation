@@ -1,10 +1,46 @@
-import { FC, useState, useEffect } from "react";
+import { PropsWithChildren, FC, useState, createContext, useContext, useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
 import QA, { QAProps } from "./QA";
+
+interface ReactConversationContext {
+  currentPosition: number;
+  setCurrentPosition: (newPosition: number) => void;
+  inputNodes: React.MutableRefObject<HTMLElement | undefined>;
+  setInputNode: (position: number, node: HTMLElement) => void;
+}
+
+const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
+
+function ReactConversationProvider({ children }: PropsWithChildren) {
+  const inputNodes = useRef<HTMLElement>();
+  const setInputNode = (newNode) => inputNodes.current;
+  const [currentPosition, setCurrentPosition] = useState(0);
+
+  return (
+    <ReactConversationContext.Provider
+      value={{
+        currentPosition,
+        setCurrentPosition,
+        inputNodes,
+        setInputNode,
+      }}
+    >
+      {children}
+    </ReactConversationContext.Provider>
+  );
+}
+
+function useReactConversation() {
+  const context = useContext(ReactConversationContext);
+  if (!Object.keys(context).length) {
+    throw new Error("Programming Error: Application has to be wrapped in SceneMapsContext. Context not found.");
+  }
+  return context;
+}
 
 type ReactConversationProps = {
   qas: Array<QAProps["qa"]>;
@@ -32,24 +68,27 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   console.groupEnd();
 
   return (
-    <Stack useFlexGap gap={3}>
-      {asked.map((qa, index) => (
-        <QA key={index} qa={qa} />
-      ))}
-      {position < questionsCount - 1 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Button onClick={next} variant="outlined" endIcon={<ChevronRightIcon />}>
-            Next
-          </Button>
-        </Box>
-      )}
-    </Stack>
+    <ReactConversationProvider>
+      <Stack useFlexGap gap={3}>
+        {asked.map((qa, index) => (
+          <QA key={index} qa={qa} />
+        ))}
+        {position < questionsCount - 1 && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Button onClick={next} variant="outlined" endIcon={<ChevronRightIcon />}>
+              Next
+            </Button>
+          </Box>
+        )}
+      </Stack>
+    </ReactConversationProvider>
   );
 };
 
 export default ReactConversation;
+export { ReactConversationContext, ReactConversationProvider, useReactConversation };
