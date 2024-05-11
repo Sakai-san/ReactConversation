@@ -1,7 +1,8 @@
+import { MutableRefObject } from "react";
 import { RefCallBack } from "react-hook-form";
 
 export const decorateCallbackRef =
-  (componentRef: React.MutableRefObject<HTMLElement | undefined>) =>
+  (componentRef: MutableRefObject<HTMLElement | undefined>) =>
   (refCallback: RefCallBack) =>
   (...element: Parameters<RefCallBack>) => {
     refCallback(element[0]);

@@ -32,6 +32,8 @@ const ControlledAutocomplete = <
 
   const componentRef = useFocusOnMount();
 
+  const componentRef = useFocusOnMount();
+
   return (
     <Controller
       control={control}
