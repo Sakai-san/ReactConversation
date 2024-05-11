@@ -1,4 +1,14 @@
-import { PropsWithChildren, FC, useState, createContext, useContext, useRef, MutableRefObject } from "react";
+import {
+  PropsWithChildren,
+  FC,
+  Dispatch,
+  SetStateAction,
+  useState,
+  createContext,
+  useContext,
+  useRef,
+  MutableRefObject,
+} from "react";
 import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,7 +18,7 @@ import QA, { QAProps } from "./QA";
 
 interface ReactConversationContext {
   currentPosition: number;
-  setCurrentPosition: (newPosition: number) => void;
+  setCurrentPosition: Dispatch<SetStateAction<number>>;
   inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
   setInputNode: (position: number, newNode: HTMLElement) => void;
 }
@@ -49,12 +59,12 @@ type ReactConversationProps = {
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const formContext = useFormContext();
-  const [position, setPostion] = useState(0);
+  const { currentPosition, setCurrentPosition } = useReactConversation();
   const questionsCount = qas.length;
 
-  const next = () => setPostion((position) => position + 1);
+  const next = () => setCurrentPosition((prevState) => prevState + 1);
 
-  const asked = qas.slice(0, position + 1);
+  const asked = qas.slice(0, currentPosition + 1);
 
   const {
     control,
