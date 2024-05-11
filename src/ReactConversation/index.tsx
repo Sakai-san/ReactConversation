@@ -84,7 +84,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
         {asked.map((qa, index) => (
           <QA key={index} qa={qa} />
         ))}
-        {position < questionsCount - 1 && (
+        {currentPosition < questionsCount - 1 && (
           <Box
             sx={{
               display: "flex",
