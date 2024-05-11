@@ -1,4 +1,4 @@
-import { PropsWithChildren, FC, useState, createContext, useContext, useRef } from "react";
+import { PropsWithChildren, FC, useState, createContext, useContext, useRef, MutableRefObject } from "react";
 import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -9,16 +9,17 @@ import QA, { QAProps } from "./QA";
 interface ReactConversationContext {
   currentPosition: number;
   setCurrentPosition: (newPosition: number) => void;
-  inputNodes: React.MutableRefObject<HTMLElement | undefined>;
+  inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
   setInputNode: (position: number, node: HTMLElement) => void;
 }
 
 const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
 
 function ReactConversationProvider({ children }: PropsWithChildren) {
-  const inputNodes = useRef<HTMLElement>();
-  const setInputNode = (newNode) => inputNodes.current;
   const [currentPosition, setCurrentPosition] = useState(0);
+  const inputNodes = useRef<Array<HTMLElement>>([]);
+  const setInputNode = (position: number, newNode: HTMLElement) =>
+    inputNodes.current.map((node, index) => (index !== position ? newNode : node));
 
   return (
     <ReactConversationContext.Provider
