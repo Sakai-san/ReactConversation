@@ -1,57 +1,11 @@
-import {
-  PropsWithChildren,
-  FC,
-  Dispatch,
-  SetStateAction,
-  useState,
-  createContext,
-  useContext,
-  useRef,
-  MutableRefObject,
-} from "react";
+import { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
 import QA, { QAProps } from "./QA";
-
-interface ReactConversationContext {
-  currentPosition: number;
-  setCurrentPosition: Dispatch<SetStateAction<number>>;
-  inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
-  setInputNode: (position: number, newNode: HTMLElement) => void;
-}
-
-const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
-
-function ReactConversationProvider({ children }: PropsWithChildren) {
-  const [currentPosition, setCurrentPosition] = useState(0);
-  const inputNodes = useRef<Array<HTMLElement>>([]);
-  const setInputNode = (position: number, newNode: HTMLElement) =>
-    inputNodes.current.map((node, index) => (index !== position ? node : newNode));
-
-  return (
-    <ReactConversationContext.Provider
-      value={{
-        currentPosition,
-        setCurrentPosition,
-        inputNodes,
-        setInputNode,
-      }}
-    >
-      {children}
-    </ReactConversationContext.Provider>
-  );
-}
-
-function useReactConversation() {
-  const context = useContext(ReactConversationContext);
-  if (!Object.keys(context).length) {
-    throw new Error("Programming Error: Application has to be wrapped in SceneMapsContext. Context not found.");
-  }
-  return context;
-}
+import { ReactConversationProvider, useReactConversation } from "./ReactConversationProvider";
 
 type ReactConversationProps = {
   qas: Array<QAProps["qa"]>;
@@ -102,4 +56,3 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 };
 
 export default ReactConversation;
-export { ReactConversationContext, ReactConversationProvider, useReactConversation };
