@@ -24,10 +24,12 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
     formState: { isSubmitting },
   } = formContext;
 
+  console.group("ReactConversation");
   console.log("formContext", formContext);
   console.log("formContext.control._fields", formContext.control._fields);
   console.log("formContext.formState", formContext.getFieldState("yearsExperience", formContext.formState));
   console.log("formContext.getValues()", formContext.getValues());
+  console.groupEnd();
 
   return (
     <Stack useFlexGap gap={3}>
