@@ -10,7 +10,7 @@ interface ReactConversationContext {
   currentPosition: number;
   setCurrentPosition: (newPosition: number) => void;
   inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
-  setInputNode: (position: number, node: HTMLElement) => void;
+  setInputNode: (position: number, newNode: HTMLElement) => void;
 }
 
 const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
@@ -19,7 +19,7 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
   const [currentPosition, setCurrentPosition] = useState(0);
   const inputNodes = useRef<Array<HTMLElement>>([]);
   const setInputNode = (position: number, newNode: HTMLElement) =>
-    inputNodes.current.map((node, index) => (index !== position ? newNode : node));
+    inputNodes.current.map((node, index) => (index !== position ? node : newNode));
 
   return (
     <ReactConversationContext.Provider
