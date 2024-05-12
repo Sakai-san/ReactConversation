@@ -16,7 +16,6 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const inputNodes = useRef<Array<HTMLElement>>([]);
   const setInputNode = (position: number, newNode: HTMLElement) => {
     inputNodes.current[position] = newNode;
-    //inputNodes.current = inputNodes.current.map((inputNode, index) => (index === position ? newNode : inputNode));
   };
   const getInputNode = (position: number) => inputNodes.current[position];
   const getPositionInConversation = (node: HTMLElement) =>
