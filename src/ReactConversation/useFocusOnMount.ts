@@ -4,7 +4,6 @@ import { useReactConversation } from "./ReactConversationProvider";
 
 export const useFocusOnMount = () => {
   const { setFocus } = useFormContext();
-
   const { currentPosition, getInputNode, getPositionInConversation } = useReactConversation();
 
   useEffect(() => {
