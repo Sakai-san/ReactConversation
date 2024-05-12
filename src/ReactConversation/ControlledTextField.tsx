@@ -23,7 +23,7 @@ const ControlledTextField = <
   const formContext = useFormContext();
   const reactConversationContext = useReactConversation();
 
-  const { getInputNode, setInputNode, currentPosition } = reactConversationContext;
+  const { setInputNode, currentPosition } = reactConversationContext;
 
   const {
     control,
