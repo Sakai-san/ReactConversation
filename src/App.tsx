@@ -63,23 +63,21 @@ function App() {
             qas={[
               [
                 <Typography>What's your gender ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="gender"
-                    render={({ field, fieldState }) => (
-                      <FormControl error={Boolean(fieldState.error)} variant="filled">
-                        <FormLabel id="demo-error-radios">Gender</FormLabel>
-                        <RadioGroup {...field} row aria-labelledby="demo-error-radios" name="gender">
-                          <FormControlLabel value="female" control={<Radio disabled={isSubmitting} />} label="Female" />
-                          <FormControlLabel value="male" control={<Radio disabled={isSubmitting} />} label="Male" />
-                          <FormControlLabel value="other" control={<Radio disabled={isSubmitting} />} label="Other" />
-                        </RadioGroup>
-                        <FormHelperText>{fieldState.error?.message ?? " "}</FormHelperText>
-                      </FormControl>
-                    )}
-                  />
-                ),
+                <Controller
+                  control={control}
+                  name="gender"
+                  render={({ field, fieldState }) => (
+                    <FormControl error={Boolean(fieldState.error)} variant="filled">
+                      <FormLabel id="demo-error-radios">Gender</FormLabel>
+                      <RadioGroup {...field} row aria-labelledby="demo-error-radios" name="gender">
+                        <FormControlLabel value="female" control={<Radio disabled={isSubmitting} />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio disabled={isSubmitting} />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio disabled={isSubmitting} />} label="Other" />
+                      </RadioGroup>
+                      <FormHelperText>{fieldState.error?.message ?? " "}</FormHelperText>
+                    </FormControl>
+                  )}
+                />,
               ],
 
               [
@@ -107,34 +105,30 @@ function App() {
 
               [
                 <Typography>Have you ever hold a leadership position ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="hasHoldLearship"
-                    render={({ field, fieldState }) => (
-                      <RadioGroup {...field} row>
-                        <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
-                        <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
-                      </RadioGroup>
-                    )}
-                  />
-                ),
+                <Controller
+                  control={control}
+                  name="hasHoldLearship"
+                  render={({ field, fieldState }) => (
+                    <RadioGroup {...field} row>
+                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
+                    </RadioGroup>
+                  )}
+                />,
               ],
 
               [
                 <Typography>Do you need a working sponsorship ?</Typography>,
-                (ref) => (
-                  <Controller
-                    control={control}
-                    name="sponsorshipNeeded"
-                    render={({ field, fieldState }) => (
-                      <RadioGroup {...field} row>
-                        <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
-                        <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
-                      </RadioGroup>
-                    )}
-                  />
-                ),
+                <Controller
+                  control={control}
+                  name="sponsorshipNeeded"
+                  render={({ field, fieldState }) => (
+                    <RadioGroup {...field} row>
+                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
+                    </RadioGroup>
+                  )}
+                />,
               ],
 
               [
@@ -168,7 +162,6 @@ function App() {
 
               [
                 <Typography>What technologies do you have a professional experience with ?</Typography>,
-
                 <ControlledAutocomplete
                   control={formContext.control}
                   name="technos"
