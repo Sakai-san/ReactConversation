@@ -1,10 +1,10 @@
-import { Ref, ReactElement, forwardRef } from "react";
+import { ReactElement, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 
 export type QAProps = {
-  qa: [ReactElement, ((ref?: Ref<HTMLElement>) => ReactElement) | ReactElement];
+  qa: [ReactElement, ReactElement];
 };
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
