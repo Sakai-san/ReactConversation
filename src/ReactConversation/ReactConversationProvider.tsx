@@ -24,7 +24,7 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
   const [currentPosition, setCurrentPosition] = useState(0);
   const inputNodes = useRef<Array<HTMLElement>>([]);
   const setInputNode = (position: number, newNode: HTMLElement) => {
-    inputNodes.current = inputNodes.current.map((node, index) => (index === position ? newNode : node));
+    inputNodes.current[position] = newNode;
   };
   const getInputNode = (position: number) => inputNodes.current[position];
   const getPositionInConversation = (node: HTMLElement) =>
