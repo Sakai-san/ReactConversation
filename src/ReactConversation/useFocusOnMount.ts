@@ -12,9 +12,7 @@ export const useFocusOnMount = () => {
     const currentNode = getInputNode(currentPosition);
     const questionPosition = getPositionInConversation(currentNode);
     if (questionPosition === currentPosition && "name" in currentNode) {
-      console.log("setFocus", currentNode.name);
       setFocus(currentNode.name);
-      // currentNode?.querySelector?.("input")?.focus();
     }
   }, []);
 };

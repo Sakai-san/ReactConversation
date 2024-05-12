@@ -21,9 +21,7 @@ const ControlledTextField = <
   TextFieldProps,
 }: ControlledTextFieldProps<TFieldValues, TName>): ReactElement<ControlledTextFieldProps<TFieldValues, TName>> => {
   const formContext = useFormContext();
-  const reactConversationContext = useReactConversation();
-
-  const { setInputNode, currentPosition } = reactConversationContext;
+  const { setInputNode, currentPosition } = useReactConversation();
 
   const {
     control,
