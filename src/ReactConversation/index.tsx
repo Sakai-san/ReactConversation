@@ -1,19 +1,57 @@
-import { FC } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  Dispatch,
+  SetStateAction,
+  useState,
+  createContext,
+  useContext,
+  useRef,
+  MutableRefObject,
+} from "react";
 import { useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
 import QA, { QAProps } from "./QA";
-import { ReactConversationProvider, useReactConversation } from "./ReactConversationProvider";
+
+interface ReactConversationContext {
+  currentPosition: number;
+  setCurrentPosition: Dispatch<SetStateAction<number>>;
+  inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
+  setInputNode: (position: number, newNode: HTMLElement) => void;
+  getInputNode: (position: number) => HTMLElement;
+}
+
+const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
+
+function useReactConversation() {
+  const context = useContext(ReactConversationContext);
+  if (!Object.keys(context).length) {
+    throw new Error("Programming Error: Application has to be wrapped in SceneMapsContext. Context not found.");
+  }
+  return context;
+}
 
 type ReactConversationProps = {
   qas: Array<QAProps["qa"]>;
 };
 
 const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const inputNodes = useRef<Array<HTMLElement>>([]);
+  const setInputNode = (position: number, newNode: HTMLElement) => {
+    inputNodes.current = inputNodes.current.map((node, index) => (index === position ? newNode : node));
+  };
+  const getInputNode = (position: number) => inputNodes.current[position];
+
+  console.group("ReactConversationContext");
+  console.log("inputNodes", inputNodes);
+  console.groupEnd();
+
   const formContext = useFormContext();
-  const { currentPosition, setCurrentPosition } = useReactConversation();
+
   const questionsCount = qas.length;
 
   const next = () => setCurrentPosition((prevState) => prevState + 1);
@@ -33,7 +71,15 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   console.groupEnd();
 
   return (
-    <ReactConversationProvider>
+    <ReactConversationContext.Provider
+      value={{
+        currentPosition,
+        setCurrentPosition,
+        inputNodes,
+        setInputNode,
+        getInputNode,
+      }}
+    >
       <Stack useFlexGap gap={3}>
         {asked.map((qa, index) => (
           <QA key={index} qa={qa} />
@@ -51,8 +97,9 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
           </Box>
         )}
       </Stack>
-    </ReactConversationProvider>
+    </ReactConversationContext.Provider>
   );
 };
 
 export default ReactConversation;
+export { ReactConversationContext, useReactConversation };

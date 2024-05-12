@@ -3,6 +3,7 @@ import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues 
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
 import { useFocusOnMount } from "./useFocusOnMount";
+import { useReactConversation } from "./ReactConversationProvider";
 import { decorateCallbackRef } from "./utils";
 
 type ControlledAutocompleteProps<
@@ -25,14 +26,14 @@ const ControlledAutocomplete = <
   ControlledAutocompleteProps<TFieldValues, TName>
 > => {
   const formContext = useFormContext();
+  const { setInputNode, currentPosition } = useReactConversation();
+
   const {
     control,
     formState: { isSubmitting },
   } = formContext;
 
-  const componentRef = useFocusOnMount();
-
-  const componentRef = useFocusOnMount();
+  useFocusOnMount();
 
   return (
     <Controller
@@ -49,7 +50,7 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              ref={decorateCallbackRef(componentRef)(field.ref)}
+              ref={decorateCallbackRef(currentPosition)(setInputNode)(field.ref)}
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
               {...TextFieldProps}

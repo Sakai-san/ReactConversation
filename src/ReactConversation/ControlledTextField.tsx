@@ -1,7 +1,8 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { Controller, useFormContext, UseControllerProps, FieldPath, FieldValues, RefCallBack } from "react-hook-form";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { useFocusOnMount } from "./useFocusOnMount";
+import { useReactConversation } from "./ReactConversationProvider";
 import { decorateCallbackRef } from "./utils";
 
 type ControlledTextFieldProps<
@@ -20,12 +21,20 @@ const ControlledTextField = <
   TextFieldProps,
 }: ControlledTextFieldProps<TFieldValues, TName>): ReactElement<ControlledTextFieldProps<TFieldValues, TName>> => {
   const formContext = useFormContext();
+  const { setInputNode, currentPosition } = useReactConversation();
+
   const {
     control,
     formState: { isSubmitting },
   } = formContext;
 
-  const componentRef = useFocusOnMount();
+  // const componentRef = useFocusOnMount();
+
+  // useEffect(() => {
+  //   getInputNode(currentPosition)?.querySelector?.("input")?.focus();
+  // }, []);
+
+  useFocusOnMount();
 
   return (
     <Controller
@@ -35,7 +44,7 @@ const ControlledTextField = <
       render={({ field, fieldState }) => (
         <TextField
           {...field}
-          ref={decorateCallbackRef(componentRef)(field.ref)}
+          ref={decorateCallbackRef(currentPosition)(setInputNode)(field.ref)}
           helperText={fieldState.error?.message ?? " "}
           error={Boolean(fieldState.error)}
           disabled={isSubmitting}

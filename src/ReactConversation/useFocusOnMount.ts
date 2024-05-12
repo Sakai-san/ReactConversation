@@ -1,11 +1,25 @@
-import { useEffect, useRef } from "react";
+// import { useEffect, useRef } from "react";
+// import { useReactConversation } from "./ReactConversationProvider";
+
+// export const useFocusOnMount = () => {
+//   const componentRef = useRef<HTMLElement>();
+
+//   const { currentPosition, getInputNode } = useReactConversation();
+
+//   useEffect(() => {
+//     //    getInputNode(currentPosition)?.querySelector?.("input")?.focus();
+//     componentRef.current?.querySelector?.("input")?.focus();
+//   }, []);
+//   return componentRef;
+// };
+
+import { useEffect } from "react";
+import { useReactConversation } from "./ReactConversationProvider";
 
 export const useFocusOnMount = () => {
-  const componentRef = useRef<HTMLElement>();
+  const { currentPosition, getInputNode } = useReactConversation();
 
   useEffect(() => {
-    componentRef.current?.querySelector?.("input")?.focus();
+    getInputNode(currentPosition)?.querySelector?.("input")?.focus();
   }, []);
-
-  return componentRef;
 };
