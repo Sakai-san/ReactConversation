@@ -40,7 +40,7 @@ const ControlledAutocomplete = <
       control={control}
       name={name}
       defaultValue={defaultValue}
-      render={({ field, fieldState }) => (
+      render={({ field: { ref, ...field }, fieldState }) => (
         <Autocomplete
           {...field}
           onChange={(event, value, reason, details) => field.onChange(value)}
@@ -50,7 +50,7 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              ref={decorateCallbackRef(currentPosition)(setInputNode)(field.ref)}
+              inputRef={decorateCallbackRef(currentPosition)(setInputNode)(ref)}
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
               {...TextFieldProps}
