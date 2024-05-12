@@ -6,5 +6,5 @@ export const useFocusOnMount = () => {
 
   useEffect(() => {
     getInputNode(currentPosition)?.querySelector?.("input")?.focus();
-  }, [currentPosition]);
+  }, []);
 };
