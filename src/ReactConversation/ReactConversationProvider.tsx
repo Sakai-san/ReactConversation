@@ -54,4 +54,4 @@ function useReactConversation() {
   return context;
 }
 
-export { ReactConversationContext, ReactConversationProvider, useReactConversation };
+export { ReactConversationContext, useReactConversation };

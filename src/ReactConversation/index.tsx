@@ -15,24 +15,7 @@ import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Stack from "@mui/material/Stack";
 import QA, { QAProps } from "./QA";
-
-interface ReactConversationContext {
-  currentPosition: number;
-  setCurrentPosition: Dispatch<SetStateAction<number>>;
-  inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
-  setInputNode: (position: number, newNode: HTMLElement) => void;
-  getInputNode: (position: number) => HTMLElement;
-}
-
-const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
-
-function useReactConversation() {
-  const context = useContext(ReactConversationContext);
-  if (!Object.keys(context).length) {
-    throw new Error("Programming Error: Application has to be wrapped in SceneMapsContext. Context not found.");
-  }
-  return context;
-}
+import { ReactConversationContext } from "./ReactConversationProvider";
 
 type ReactConversationProps = {
   qas: Array<QAProps["qa"]>;
@@ -102,4 +85,3 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
 };
 
 export default ReactConversation;
-export { ReactConversationContext, useReactConversation };
