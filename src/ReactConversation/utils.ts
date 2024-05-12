@@ -7,7 +7,6 @@ export const decorateCallbackRef =
   (refCallback: RefCallBack) =>
   (...element: Parameters<RefCallBack>) => {
     refCallback(element[0]);
-    console.log("element[0]", element[0]);
     setInputNode(currentPosition, element[0]);
   };
 

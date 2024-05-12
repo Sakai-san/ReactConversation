@@ -27,10 +27,6 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
   };
   const getInputNode = (position: number) => inputNodes.current[position];
 
-  console.group("ReactConversationContext");
-  console.log("inputNodes", inputNodes);
-  console.groupEnd();
-
   return (
     <ReactConversationContext.Provider
       value={{
@@ -49,7 +45,9 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
 function useReactConversation() {
   const context = useContext(ReactConversationContext);
   if (!Object.keys(context).length) {
-    throw new Error("Programming Error: Application has to be wrapped in SceneMapsContext. Context not found.");
+    throw new Error(
+      "Programming Error: Application has to be wrapped around ReactConversationProvier. Context not found."
+    );
   }
   return context;
 }

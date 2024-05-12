@@ -21,18 +21,14 @@ const ControlledTextField = <
   TextFieldProps,
 }: ControlledTextFieldProps<TFieldValues, TName>): ReactElement<ControlledTextFieldProps<TFieldValues, TName>> => {
   const formContext = useFormContext();
-  const { setInputNode, currentPosition } = useReactConversation();
+  const reactConversationContext = useReactConversation();
+
+  const { getInputNode, setInputNode, currentPosition } = reactConversationContext;
 
   const {
     control,
     formState: { isSubmitting },
   } = formContext;
-
-  // const componentRef = useFocusOnMount();
-
-  // useEffect(() => {
-  //   getInputNode(currentPosition)?.querySelector?.("input")?.focus();
-  // }, []);
 
   useFocusOnMount();
 

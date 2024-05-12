@@ -25,13 +25,10 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const inputNodes = useRef<Array<HTMLElement>>([]);
   const setInputNode = (position: number, newNode: HTMLElement) => {
-    inputNodes.current = inputNodes.current.map((node, index) => (index === position ? newNode : node));
+    inputNodes.current[position] = newNode;
+    //inputNodes.current = inputNodes.current.map((inputNode, index) => (index === position ? newNode : inputNode));
   };
   const getInputNode = (position: number) => inputNodes.current[position];
-
-  console.group("ReactConversationContext");
-  console.log("inputNodes", inputNodes);
-  console.groupEnd();
 
   const formContext = useFormContext();
 
@@ -46,12 +43,12 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
     formState: { isSubmitting },
   } = formContext;
 
-  console.group("ReactConversation");
-  console.log("formContext", formContext);
-  console.log("formContext.control._fields", formContext.control._fields);
-  console.log("formContext.formState", formContext.getFieldState("yearsExperience", formContext.formState));
-  console.log("formContext.getValues()", formContext.getValues());
-  console.groupEnd();
+  // console.group("ReactConversation");
+  // console.log("formContext", formContext);
+  // console.log("formContext.control._fields", formContext.control._fields);
+  // console.log("formContext.formState", formContext.getFieldState("yearsExperience", formContext.formState));
+  // console.log("formContext.getValues()", formContext.getValues());
+  // console.groupEnd();
 
   return (
     <ReactConversationContext.Provider
