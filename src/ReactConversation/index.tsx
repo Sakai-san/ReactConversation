@@ -19,6 +19,8 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
     //inputNodes.current = inputNodes.current.map((inputNode, index) => (index === position ? newNode : inputNode));
   };
   const getInputNode = (position: number) => inputNodes.current[position];
+  const getPositionInConversation = (node: HTMLElement) =>
+    inputNodes.current.findIndex((inputNode) => inputNode === node);
 
   const formContext = useFormContext();
 
@@ -48,6 +50,7 @@ const ReactConversation: FC<ReactConversationProps> = ({ qas }) => {
         inputNodes,
         setInputNode,
         getInputNode,
+        getPositionInConversation,
       }}
     >
       <Stack useFlexGap gap={3}>

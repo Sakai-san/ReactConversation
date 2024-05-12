@@ -15,6 +15,7 @@ interface ReactConversationContext {
   inputNodes: MutableRefObject<Array<HTMLElement> | undefined>;
   setInputNode: (position: number, newNode: HTMLElement) => void;
   getInputNode: (position: number) => HTMLElement;
+  getPositionInConversation: (node: HTMLElement) => number;
 }
 
 const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
@@ -26,6 +27,8 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
     inputNodes.current = inputNodes.current.map((node, index) => (index === position ? newNode : node));
   };
   const getInputNode = (position: number) => inputNodes.current[position];
+  const getPositionInConversation = (node: HTMLElement) =>
+    inputNodes.current.findIndex((inputNode) => inputNode === node);
 
   return (
     <ReactConversationContext.Provider
@@ -35,6 +38,7 @@ function ReactConversationProvider({ children }: PropsWithChildren) {
         inputNodes,
         setInputNode,
         getInputNode,
+        getPositionInConversation,
       }}
     >
       {children}

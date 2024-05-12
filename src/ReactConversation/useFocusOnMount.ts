@@ -2,9 +2,14 @@ import { useEffect } from "react";
 import { useReactConversation } from "./ReactConversationProvider";
 
 export const useFocusOnMount = () => {
-  const { currentPosition, getInputNode } = useReactConversation();
+  const { currentPosition, getInputNode, getPositionInConversation } = useReactConversation();
 
   useEffect(() => {
-    getInputNode(currentPosition)?.querySelector?.("input")?.focus();
+    // postion of the question in the conversation
+    const currentNode = getInputNode(currentPosition);
+    const questionPosition = getPositionInConversation(currentNode);
+    if (questionPosition === currentPosition) {
+      currentNode?.querySelector?.("input")?.focus();
+    }
   }, []);
 };
