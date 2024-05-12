@@ -33,7 +33,7 @@ const ControlledAutocomplete = <
     formState: { isSubmitting },
   } = formContext;
 
-  useFocusOnMount();
+  useFocusOnMount(name);
 
   return (
     <Controller
