@@ -110,7 +110,7 @@ function App() {
                   name="hasHoldLearship"
                   render={({ field, fieldState }) => (
                     <RadioGroup {...field} row>
-                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="no" disabled={isSubmitting} control={<Radio />} label="No" />
                       <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
                     </RadioGroup>
                   )}
@@ -124,7 +124,7 @@ function App() {
                   name="sponsorshipNeeded"
                   render={({ field, fieldState }) => (
                     <RadioGroup {...field} row>
-                      <FormControlLabel ref={ref} value="no" disabled={isSubmitting} control={<Radio />} label="No" />
+                      <FormControlLabel value="no" disabled={isSubmitting} control={<Radio />} label="No" />
                       <FormControlLabel value="yes" disabled={isSubmitting} control={<Radio />} label="Yes" />
                     </RadioGroup>
                   )}
