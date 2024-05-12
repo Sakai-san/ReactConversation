@@ -8,13 +8,13 @@ export type QAProps = {
 };
 
 const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
-  const [question, renderAnswer] = qa;
+  const [question, answer] = qa;
 
   return (
     <Paper elevation={4} sx={{ p: 2 }}>
       <Stack>
         <Box alignSelf="start">{question}</Box>
-        <Box alignSelf="end">{typeof renderAnswer === "function" ? renderAnswer(ref) : renderAnswer}</Box>
+        <Box alignSelf="end">{answer}</Box>
       </Stack>
     </Paper>
   );
