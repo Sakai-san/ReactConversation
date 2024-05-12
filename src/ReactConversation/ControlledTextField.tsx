@@ -37,10 +37,10 @@ const ControlledTextField = <
       control={control}
       name={name}
       defaultValue={defaultValue}
-      render={({ field, fieldState }) => (
+      render={({ field: { ref, ...field }, fieldState }) => (
         <TextField
           {...field}
-          ref={decorateCallbackRef(currentPosition)(setInputNode)(field.ref)}
+          inputRef={decorateCallbackRef(currentPosition)(setInputNode)(ref)}
           helperText={fieldState.error?.message ?? " "}
           error={Boolean(fieldState.error)}
           disabled={isSubmitting}
