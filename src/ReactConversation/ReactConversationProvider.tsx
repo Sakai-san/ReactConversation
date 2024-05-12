@@ -1,13 +1,4 @@
-import {
-  PropsWithChildren,
-  Dispatch,
-  SetStateAction,
-  useState,
-  createContext,
-  useContext,
-  useRef,
-  MutableRefObject,
-} from "react";
+import { Dispatch, SetStateAction, createContext, useContext, MutableRefObject } from "react";
 
 interface ReactConversationContext {
   currentPosition: number;
@@ -20,32 +11,6 @@ interface ReactConversationContext {
 
 const ReactConversationContext = createContext<ReactConversationContext>({} as ReactConversationContext);
 
-function ReactConversationProvider({ children }: PropsWithChildren) {
-  const [currentPosition, setCurrentPosition] = useState(0);
-  const inputNodes = useRef<Array<HTMLElement>>([]);
-  const setInputNode = (position: number, newNode: HTMLElement) => {
-    inputNodes.current[position] = newNode;
-  };
-  const getInputNode = (position: number) => inputNodes.current[position];
-  const getPositionInConversation = (node: HTMLElement) =>
-    inputNodes.current.findIndex((inputNode) => inputNode === node);
-
-  return (
-    <ReactConversationContext.Provider
-      value={{
-        currentPosition,
-        setCurrentPosition,
-        inputNodes,
-        setInputNode,
-        getInputNode,
-        getPositionInConversation,
-      }}
-    >
-      {children}
-    </ReactConversationContext.Provider>
-  );
-}
-
 function useReactConversation() {
   const context = useContext(ReactConversationContext);
   if (!Object.keys(context).length) {
@@ -56,4 +21,4 @@ function useReactConversation() {
   return context;
 }
 
-export { ReactConversationContext, ReactConversationProvider, useReactConversation };
+export { ReactConversationContext, useReactConversation };
