@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { useReactConversation } from "./ReactConversationProvider";
 
-export const useFocusOnMount = () => {
+export const useFocusOnMount = (name) => {
+  const { setFocus } = useFormContext();
   const { currentPosition, getInputNode, getPositionInConversation } = useReactConversation();
 
   useEffect(() => {
@@ -10,7 +11,9 @@ export const useFocusOnMount = () => {
     const currentNode = getInputNode(currentPosition);
     const questionPosition = getPositionInConversation(currentNode);
     if (questionPosition === currentPosition) {
-      currentNode?.querySelector?.("input")?.focus();
+      //      currentNode?.querySelector?.("input")?.focus();
+
+      setFocus(name);
     }
   }, []);
 };

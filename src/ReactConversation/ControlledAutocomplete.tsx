@@ -50,7 +50,7 @@ const ControlledAutocomplete = <
           renderInput={(params) => (
             <TextField
               {...params}
-              ref={decorateCallbackRef(currentPosition)(setInputNode)(ref)}
+              inputRef={decorateCallbackRef(currentPosition)(setInputNode)(ref)}
               helperText={fieldState.error?.message ?? " "}
               error={Boolean(fieldState.error)}
               disabled={isSubmitting}
