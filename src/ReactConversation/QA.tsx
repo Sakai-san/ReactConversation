@@ -1,4 +1,4 @@
-import { ReactElement, forwardRef } from "react";
+import { FC, ReactElement } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
@@ -7,7 +7,7 @@ export type QAProps = {
   qa: [ReactElement, ReactElement];
 };
 
-const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
+const QA: FC<QAProps> = ({ qa }) => {
   const [question, answer] = qa;
 
   return (
@@ -18,6 +18,6 @@ const QA = forwardRef<HTMLElement, QAProps>(({ qa }, ref) => {
       </Stack>
     </Paper>
   );
-});
+};
 
 export default QA;
